@@ -5,6 +5,7 @@ import Login from './screens/Login'
 import NewPost from './screens/NewPost';
 import Profile from './screens/Profile';
 import SignUp from './screens/SignUp';
+import 'bootstrap/dist/css/bootstrap.css'
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
