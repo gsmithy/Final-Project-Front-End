@@ -4,15 +4,15 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="basic-addon1">
             @
           </span>
         </div>
         <input
           type="text"
-          class="form-control"
+          className="form-control"
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
@@ -22,7 +22,7 @@ const Login = () => {
       <div className="input-group mb-3">
         <input
           type="text"
-          class="form-control"
+          className="form-control"
           placeholder="Recipient's username"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
@@ -34,7 +34,7 @@ const Login = () => {
         </div>
       </div>
 
-      <label for="basic-url">Your vanity URL</label>
+      <label htmlFor="basic-url">Your vanity URL</label>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text" id="basic-addon3">

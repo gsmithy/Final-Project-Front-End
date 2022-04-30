@@ -4,20 +4,20 @@ const NewPost = () => {
   return (
     <div>
       <form>
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Email address</label>
+        <div className="form-group">
+          <label htmlFor="exampleFormControlInput1">Email address</label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="exampleFormControlInput1"
             placeholder="name@example.com"
           />
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">
+        <div className="form-group">
+          <label htmlFor="exampleFormControlSelect1">
             What kind of Good News is this?
           </label>
-          <select class="form-control" id="exampleFormControlSelect1">
+          <select className="form-control" id="exampleFormControlSelect1">
             <option>Healing!</option>
             <option>Financial Provision!</option>
             <option>Relationship Restoration!</option>
@@ -25,12 +25,12 @@ const NewPost = () => {
             <option>Other!</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">
+        <div className="form-group">
+          <label htmlFor="exampleFormControlTextarea1">
             Tell us some GOOD NEWS!
           </label>
           <textarea
-            class="form-control"
+            className="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
           ></textarea>
@@ -39,11 +39,11 @@ const NewPost = () => {
       <div>
         <h3>Have a picture or video?</h3>
         <form>
-          <div class="form-group">
-            <label for="exampleFormControlFile1">Picture or Video?</label>
+          <div className="form-group">
+            <label htmlFor="exampleFormControlFile1">Picture or Video?</label>
             <input
               type="file"
-              class="form-control-file"
+              className="form-control-file"
               id="exampleFormControlFile1"
             />
           </div>
