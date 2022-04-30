@@ -48,11 +48,11 @@ function App() {
 
         <hr />
         <Routes>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/newpost" component={NewPost} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/signup" component={SignUp} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/newpost" element={<NewPost />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>
     </Router>
