@@ -2,11 +2,11 @@ import React from "react";
 
 const SignUp = () => {
   return (
-    <section className="vh-100" style="background-color: #eee;">
+    <div className="vh-100" >
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-12 col-xl-11">
-            <div className="card text-black" style="border-radius: 25px;">
+            <div className="card text-black" >
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -95,7 +95,7 @@ const SignUp = () => {
                     <img
                       src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                       className="img-fluid"
-                      alt="Sample image"
+                      alt="Sample"
                     />
                   </div>
                 </div>
@@ -104,7 +104,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
