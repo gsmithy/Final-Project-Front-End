@@ -46,6 +46,7 @@ function App() {
           </li>
         </ul>
 
+    
         <hr />
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -53,6 +54,7 @@ function App() {
           <Route path="/newpost" element={<NewPost />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
+
         </Routes>
       </div>
     </Router>

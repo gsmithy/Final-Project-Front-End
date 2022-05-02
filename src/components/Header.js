@@ -8,6 +8,7 @@ const Header = ({ title }) => {
       <a href="/newpost">New Post</a>
       <a href="/profile">Profile</a>
       <a href="/signup">Sign Up</a>
+
       <h1> {{ title }} </h1>
     </div>
   );
