@@ -8,8 +8,8 @@ import Button from "react-bootstrap/Button";
 const NewPost = () => {
   return (
     <div>
-      <Container className="p-4">
-        <Card style={{ width: "80rem" }}>
+      <Container className="p-4 d-flex justify-content-center">
+        <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Good News to Share</Card.Header>
           <Card.Body>
             <FloatingLabel
