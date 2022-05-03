@@ -1,54 +1,59 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Button from "react-bootstrap/Button";
 
 const NewPost = () => {
   return (
     <div>
-      <form>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlInput1">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleFormControlInput1"
-            placeholder="name@example.com"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlSelect1">
-            What kind of Good News is this?
-          </label>
-          <select className="form-control" id="exampleFormControlSelect1">
-            <option>Healing!</option>
-            <option>Financial Provision!</option>
-            <option>Relationship Restoration!</option>
-            <option>Miracle!</option>
-            <option>Other!</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label htmlFor="exampleFormControlTextarea1">
-            Tell us some GOOD NEWS!
-          </label>
-          <textarea
-            className="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          ></textarea>
-        </div>
-      </form>
-      <div>
-        <h3>Have a picture or video?</h3>
-        <form>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlFile1">Picture or Video?</label>
-            <input
-              type="file"
-              className="form-control-file"
-              id="exampleFormControlFile1"
-            />
-          </div>
-        </form>
-      </div>
+      <Container className="p-4">
+        <Card style={{ width: "80rem" }}>
+          <Card.Header className="text-center">Good News to Share</Card.Header>
+          <Card.Body>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Email address"
+              className="mb-3"
+            >
+              <Form.Control type="email" placeholder="name@example.com" />
+            </FloatingLabel>
+
+            <Form.Select aria-label="Default select example" className="mb-3">
+              <option>What Kind of News?</option>
+              <option value="1">Healing!</option>
+              <option value="2">Financial Provision!</option>
+              <option value="3">Relationship Restoration!</option>
+              <option value="4">Miracle!</option>
+              <option value="5">Other!</option>
+            </Form.Select>
+
+            <FloatingLabel
+              controlId="floatingTextarea2"
+              label="What Happened?"
+              className="mb-3"
+            >
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a testimony here"
+                style={{ height: "100px" }}
+              />
+            </FloatingLabel>
+
+            <Form.Group controlId="formFileMultiple" className="mb-3">
+              <Form.Label>Input Pictures or Videos!</Form.Label>
+              <Form.Control type="file" multiple />
+            </Form.Group>
+
+            <Form.Group className="d-flex justify-content-end">
+              <Button variant="secondary" type="submit">
+                Submit
+              </Button>
+            </Form.Group>
+          </Card.Body>
+        </Card>
+      </Container>
     </div>
   );
 };
