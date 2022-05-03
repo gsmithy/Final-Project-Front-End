@@ -1,74 +1,42 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import { FormGroup } from "react-bootstrap";
 
 const Login = () => {
   return (
     <div>
-      <h2>Login</h2>
-      <div className="input-group mb-3">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon1">
-            @
-          </span>
-        </div>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-        ></input>
-      </div>
+      <Container className="p-4 d-flex justify-content-center">
+        <Card style={{ width: "40rem" }}>      
+        <Card.Header className="text-center">    
+          <h2>Login</h2>
+          </Card.Header>
+          <Card.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
 
-      <div className="input-group mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Recipient's username"
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-        ></input>
-        <div className="input-group-append">
-          <span className="input-group-text" id="basic-addon2">
-            @example.com
-          </span>
-        </div>
-      </div>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
 
-      <label htmlFor="basic-url">Your vanity URL</label>
-      <div className="input-group mb-3">
-        <div className="input-group-prepend">
-          <span className="input-group-text" id="basic-addon3">
-            https://example.com/users/
-          </span>
-        </div>
-        <input
-          type="text"
-          className="form-control"
-          id="basic-url"
-          aria-describedby="basic-addon3"
-        ></input>
-      </div>
-
-      <div className="input-group mb-3">
-        <div className="input-group-prepend">
-          <span className="input-group-text">$</span>
-        </div>
-        <input
-          type="text"
-          className="form-control"
-          aria-label="Amount (to the nearest dollar)"
-        ></input>
-        <div className="input-group-append">
-          <span className="input-group-text">.00</span>
-        </div>
-      </div>
-
-      <div className="input-group">
-        <div className="input-group-prepend">
-          <span className="input-group-text">With textarea</span>
-        </div>
-        <textarea className="form-control" aria-label="With textarea"></textarea>
-      </div>
+              <FormGroup className="d-flex justify-content-end">
+                <Button variant="secondary" type="submit">
+                  Submit
+                </Button>
+              </FormGroup>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Container>
     </div>
   );
 };
