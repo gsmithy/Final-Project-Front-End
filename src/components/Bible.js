@@ -1,23 +1,30 @@
-import axios, { Axios } from "axios";
+import React from 'react';
+import axios from 'axios';
 
+export default class BibleVerses extends React.Component {
+  state = {
+    verses: []
+  }
 
-const [bible, setBible] = useState('')
+  componentDidMount() {
+    axios.get('https://bible-api.com/john 3:16')
+      .then(res => {
+        const verses = res.data;
+        console.log(verses);
+        this.setState({ verses });
+      })
+  }
 
-const getBibleVerse = () => {
-    Axios.get('https://official-joke-api.appspot.com/random_joke')
-    .then((verseResult) => {
-        console.log('verse', verse);
-        setBible(verseResult.data.chapter + ':' + verseResult.data.verse)
+  render() {
+    return (
+      <ul>
+        {
+          this.state.verses
+            .map(verses =>
+              <li key={verses.reference}>{verses.text}</li>
+            )
         }
-    );
-
-return <div>
-    Get Bible Verse:
-    <button onClick={getBibleVerse}>Click me</button>
-    {bible}
-</div>
+      </ul>
+    )
+  }
 }
-
-
-
-export default getBibleVerse;
