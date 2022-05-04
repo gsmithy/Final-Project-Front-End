@@ -3,7 +3,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import { FormGroup } from "react-bootstrap";
+import FormGroup from "react-bootstrap/FormGroup";
+
 
 const Login = () => {
   return (
