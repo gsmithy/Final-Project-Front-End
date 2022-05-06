@@ -9,7 +9,7 @@ export default class Header extends React.Component {
       <div>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/">Good News!</Navbar.Brand>
+            <Navbar.Brand href="/">g o o d  n e w s</Navbar.Brand>
             <Nav className=" d-flex justify-content-end">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/login">Login</Nav.Link>
