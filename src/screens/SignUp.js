@@ -1,152 +1,205 @@
 import axios from "axios";
 import React, { useState } from "react";
+//import { withRouter }  from "react-router";
 
 
-const SignUp = (history) => {
-  const [{
-    first_name, setFirstname,
-    last_name, setLastname,
-    user_name, setUsername,
-    password, setPassword,
-    email, setEmail
-  }] = useState(" ");
+const SignUp = ({history}) => {
+  const [first_name, setFirstname] = useState("");
+  const [last_name, setLastname] = useState("");
+  const [user_name, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  // const [address, setaddress] = useState("");
+  // const [state, setState] = useState("");
+  // const [city, setCity] = useState("");
+  // const [zip_code, setZipcode] = useState("");
+  // const [country, setCountry] = useState("");
+  // const [profile_pic, setProfile_pic] = useState("");
+
+  // const userHeaders = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE' }
+  const url = 'http://localhost:3001/users';
 
   const createUser = (e) => {
     e.preventDefault();
 
+
     const req = {
-      first_name, 
+      first_name,
       last_name,
       user_name,
       password,
       email,
+      // address,
+      // state,
+      // city,
+      // zip_code,
+      // country,
+      // profile_pic,
+      
     }
 
-    axios.post('http://localhost3001:users', req)
+    axios.post(`${url}/signup`, req)
     .then(result => {
-      console.log(result.data);
-      history.push('login');
-    })
+      console.log(result);
+      //history.push('/login');
+    }, err => {
+      console.log(err)
+    }) 
+
 
   };
   return (
-    <form onSubmit={createUser}>
-    <h1>Sign Up</h1>
-    <label>Username</label>
-    <input type="text" className={user_name} onChange={e => setUsername(e.target.value)}/>
-    <label>firstname</label>
-    <input type="text" className={first_name} onChange={e => setFirstname(e.target.value)}/>
-    <label>firstname</label>
-    <input type="text" className={last_name} onChange={e => setLastname(e.target.value)}/>
-    <label>firstname</label>
-    <input type="text" className={password} onChange={e => setPassword(e.target.value)}/>
-    <label>firstname</label>
-    <input type="text" className={email} onChange={e => setEmail(e.target.value)}/>
-    <button>Create</button>
-    </form>
-    // <div className="vh-100" >
-    //   <div className="container h-100">
-    //     <div className="row d-flex justify-content-center align-items-center h-100">
-    //       <div className="col-lg-12 col-xl-11">
-    //         <div className="card text-black" >
-    //           <div className="card-body p-md-5">
-    //             <div className="row justify-content-center">
-    //               <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-    //                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-    //                   Create Your Account!
-    //                 </p>
+    // <form onSubmit={createUser}>
+    //   <h1>Sign Up</h1>
+    //   <label>Username</label>
+    //   <input type="text" className={user_name} onChange={e => setUsername(e.target.value)} />
+    //   <label>firstname</label>
+    //   <input type="text" className={first_name} onChange={e => setFirstname(e.target.value)} />
+    //   <label>last Name</label>
+    //   <input type="text" className={last_name} onChange={e => setLastname(e.target.value)} />
+    //   <label>Password</label>
+    //   <input type="text" className={password} onChange={e => setPassword(e.target.value)} />
+    //   <label>Email</label>
+    //   <input type="text" className={email} onChange={e => setEmail(e.target.value)} />
+    //   <label>Address</label>
+    //   <input type="text" className={address} onChange={e => setaddress(e.target.value)} />
+    //   <label>State</label>
+    //   <input type="text" className={state} onChange={e => setState(e.target.value)} />
+    //   <label>City</label>
+    //   <input type="text" className={city} onChange={e => setCity(e.target.value)} />
+    //   <label>Zip Code</label>
+    //   <input type="text" className={zip_code} onChange={e => setZipcode(e.target.value)} />
+    //   <label>Country</label>
+    //   <input type="text" className={country} onChange={e => setCountry(e.target.value)} />
+    //   <label>Profile pic</label>
+    //   <input type="text" className={profile_pic} onChange={e => setProfile_pic(e.target.value)} />
+    //   <button type="submit">Create</button>
+    // </form>
 
-    //                 <form className="mx-1 mx-md-4">
-    //                   <div className="d-flex flex-row align-items-center mb-4">
-    //                     <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-    //                     <div className="form-outline flex-fill mb-0">
-    //                       <input
-    //                         type="text"
-    //                         id="form3Example1c"
-    //                         className="form-control"
-    //                       />
-    //                       <label className="form-label" htmlFor="form3Example1c">
-    //                         What's Your Name?
-    //                       </label>
-    //                     </div>
-    //                   </div>
+    // <form onSubmit={createUser}>
+    <div className="vh-100" >
+      <div className="container h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col-lg-12 col-xl-11">
+            <div className="card text-black" >
+              <div className="card-body p-md-5">
+                <div className="row justify-content-center">
+                  <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                      Create Your Account!
+                    </p>
 
-    //                   <div className="d-flex flex-row align-items-center mb-4">
-    //                     <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
-    //                     <div className="form-outline flex-fill mb-0">
-    //                       <input
-    //                         type="email"
-    //                         id="form3Example3c"
-    //                         className="form-control"
-    //                       />
-    //                       <label className="form-label" htmlFor="form3Example3c">
-    //                         What's Your Email?
-    //                       </label>
-    //                     </div>
-    //                   </div>
+                    <form onSubmit={createUser} className="mx-1 mx-md-4">
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div className="form-outline flex-fill mb-0">
+                      
+                          <input
+                            type="text"
+                            id="firstName"
+                            className="form-control {first_name}"
+                            onChange={e => setFirstname(e.target.value)}
 
-    //                   <div className="d-flex flex-row align-items-center mb-4">
-    //                     <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-    //                     <div className="form-outline flex-fill mb-0">
-    //                       <input
-    //                         type="password"
-    //                         id="form3Example4c"
-    //                         className="form-control"
-    //                       />
-    //                       <label className="form-label" htmlFor="form3Example4c">
-    //                         Password
-    //                       </label>
-    //                     </div>
-    //                   </div>
+                          />
+                          <label className="form-label" htmlFor="form3Example1c">
+                            What's Your First Name?
+                          </label>
+                        </div>
+                      </div>
 
-    //                   <div className="d-flex flex-row align-items-center mb-4">
-    //                     <i className="fas fa-key fa-lg me-3 fa-fw"></i>
-    //                     <div className="form-outline flex-fill mb-0">
-    //                       <input
-    //                         type="password"
-    //                         id="form3Example4cd"
-    //                         className="form-control"
-    //                       />
-    //                       <label className="form-label" htmlFor="form3Example4cd">
-    //                         Repeat your password
-    //                       </label>
-    //                     </div>
-    //                   </div>
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div className="form-outline flex-fill mb-0">
+                      
+                          <input
+                            type="text"
+                            id="lastName"
+                            className="form-control {last_name}"
+                            onChange={e => setLastname(e.target.value)}
 
-    //                   <div className="form-check d-flex justify-content-center mb-5">
-    //                     <input
-    //                       className="form-check-input me-2"
-    //                       type="checkbox"
-    //                       value=""
-    //                       id="form2Example3c"
-    //                     />
-    //                     <label className="form-check-label" htmlFor="form2Example3">
-    //                       I agree all statements in{" "}
-    //                       <a href="#!">Terms of service</a>
-    //                     </label>
-    //                   </div>
 
-    //                   <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-    //                     <button type="button" className="btn btn-primary btn-lg">
-    //                       Register
-    //                     </button>
-    //                   </div>
-    //                 </form>
-    //               </div>
-    //               <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-    //                 <img
-    //                   src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-    //                   className="img-fluid"
-    //                   alt="Sample"
-    //                 />
-    //               </div>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+                          />
+                          <label className="form-label" htmlFor="form3Example3c">
+                            What's Your Last Name?
+                          </label>
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div className="form-outline flex-fill mb-0">
+                      
+                          <input
+                            type="text"
+                            id="userName"
+                            className="form-control {user_name}"
+                            onChange={e => setUsername(e.target.value)}
+
+
+                          />
+                          <label className="form-label" htmlFor="form3Example3c">
+                            Create a User Name
+                          </label>
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div className="form-outline flex-fill mb-0">
+
+                          <input
+                            type="email"
+                            id="email"
+                            className="form-control {email} "
+                            onChange={e => setEmail(e.target.value)}
+
+                          />
+                          <label className="form-label" htmlFor="form3Example4c">
+                            Email
+                          </label>
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <i className="fas fa-key fa-lg me-3 fa-fw"></i>
+                        <div className="form-outline flex-fill mb-0">
+                          <input
+                            type="password"
+                            id="password"
+                            className="form-control {password} "
+                            onChange={e => setPassword(e.target.value)}
+
+                          />
+                          <label className="form-label" htmlFor="form3Example4cd">
+                            Create a Password
+                          </label>
+                        </div>
+                      </div>
+
+                      
+
+                      <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" className="btn btn-primary btn-lg">
+                          Sign Up!
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                      className="img-fluid"
+                      alt="Sample"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  // </form>
   );
 };
 
