@@ -21,7 +21,7 @@ export default class PersonList extends React.Component {
         {
           this.state.persons
             .map(person =>
-              <Container className="p-4 d-flex justify-content-center">>
+              <Container className="p-4 d-flex justify-content-center">
                 <Card style={{ width: "40rem" }}>
 
                 <li key={person.id}>{person.location}! {person.description} </li>
