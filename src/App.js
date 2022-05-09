@@ -9,7 +9,7 @@ import Header from "./components/Header";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div>
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/newpost" element={<NewPost />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path='/profile/:username' element={<Profile />} />
           <Route path="/Sign%20Up" element={<SignUp />} />
           <Route exact path="/" element={<Home />} />
         </Routes>
