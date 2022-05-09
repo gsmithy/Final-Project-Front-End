@@ -15,7 +15,8 @@ export default class Header extends React.Component {
               <Nav.Link href="/login">Login</Nav.Link>
               <Nav.Link href="/newpost">New Post</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
-              <Nav.Link href="/Sign Up">Sign Up</Nav.Link>
+              <Nav.Link href="/signup">Sign Up</Nav.Link>
+              <Nav.Link href="/logindb">LoginDB</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
