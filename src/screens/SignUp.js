@@ -1,20 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
-//import { withRouter }  from "react-router";
+import { useNavigate } from "react-router-dom";
 
-
-const SignUp = ({history}) => {
+const SignUp = () => {
   const [first_name, setFirstname] = useState("");
   const [last_name, setLastname] = useState("");
   const [user_name, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  // const [address, setaddress] = useState("");
-  // const [state, setState] = useState("");
-  // const [city, setCity] = useState("");
-  // const [zip_code, setZipcode] = useState("");
-  // const [country, setCountry] = useState("");
-  // const [profile_pic, setProfile_pic] = useState("");
+  let navigate = useNavigate();
+  
+ 
 
   // const userHeaders = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE' }
   const url = 'http://localhost:3001/users';
@@ -29,19 +25,11 @@ const SignUp = ({history}) => {
       user_name,
       password,
       email,
-      // address,
-      // state,
-      // city,
-      // zip_code,
-      // country,
-      // profile_pic,
-      
     }
 
     axios.post(`${url}/signup`, req)
     .then(result => {
       console.log(result);
-      //history.push('/login');
     }, err => {
       console.log(err)
     }) 
@@ -49,34 +37,7 @@ const SignUp = ({history}) => {
 
   };
   return (
-    // <form onSubmit={createUser}>
-    //   <h1>Sign Up</h1>
-    //   <label>Username</label>
-    //   <input type="text" className={user_name} onChange={e => setUsername(e.target.value)} />
-    //   <label>firstname</label>
-    //   <input type="text" className={first_name} onChange={e => setFirstname(e.target.value)} />
-    //   <label>last Name</label>
-    //   <input type="text" className={last_name} onChange={e => setLastname(e.target.value)} />
-    //   <label>Password</label>
-    //   <input type="text" className={password} onChange={e => setPassword(e.target.value)} />
-    //   <label>Email</label>
-    //   <input type="text" className={email} onChange={e => setEmail(e.target.value)} />
-    //   <label>Address</label>
-    //   <input type="text" className={address} onChange={e => setaddress(e.target.value)} />
-    //   <label>State</label>
-    //   <input type="text" className={state} onChange={e => setState(e.target.value)} />
-    //   <label>City</label>
-    //   <input type="text" className={city} onChange={e => setCity(e.target.value)} />
-    //   <label>Zip Code</label>
-    //   <input type="text" className={zip_code} onChange={e => setZipcode(e.target.value)} />
-    //   <label>Country</label>
-    //   <input type="text" className={country} onChange={e => setCountry(e.target.value)} />
-    //   <label>Profile pic</label>
-    //   <input type="text" className={profile_pic} onChange={e => setProfile_pic(e.target.value)} />
-    //   <button type="submit">Create</button>
-    // </form>
-
-    // <form onSubmit={createUser}>
+  
     <div className="vh-100" >
       <div className="container h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
@@ -177,11 +138,13 @@ const SignUp = ({history}) => {
                       </div>
 
                       
-
+                        
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" className="btn btn-primary btn-lg">
+
+                        <button type="submit" onClick={() => {navigate('/login')}} className="btn btn-primary btn-lg" >
                           Sign Up!
                         </button>
+
                       </div>
                     </form>
                   </div>
@@ -199,7 +162,6 @@ const SignUp = ({history}) => {
         </div>
       </div>
     </div>
-  // </form>
   );
 };
 
