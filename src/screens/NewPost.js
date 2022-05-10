@@ -47,7 +47,7 @@ const NewPost = () => {
             </Form.Group>
 
             <Form.Group className="d-flex justify-content-end">
-              <Button variant="secondary" type="submit">
+              <Button variant="secondary" type="submit" method="post">
                 Submit
               </Button>
             </Form.Group>
