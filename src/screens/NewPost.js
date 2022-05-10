@@ -4,23 +4,45 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 //import { useNavigate } from "react-router-dom";
 
-const NewPost = (e) => {
+const NewPost = () => {
   // const [user_name, setUsername] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [user, setUser] = useState(null)
 
-  const createPost = () => {
-    //e.preventDefault();
+
+  useEffect(() => {
+    let token = localStorage.getItem("myJWT");
+
+    console.log(token);
+    const options = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+
+    axios.post('http://localhost:3001/users/getOne', { jwt: token }, options).then((res) => {
+      console.log(res);
+      setUser(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+
+
+  const createPost = (e) => {
+    e.preventDefault();
     //const navigate = useNavigate();
 
     if (description !== '' && location !== '') {
       const req = {
         description,
-        location
+        location, 
+        username: user.user_name
       }
 
       const token = localStorage.getItem('myJWT')
@@ -31,26 +53,26 @@ const NewPost = (e) => {
 
       const options = {
         headers: {
-          'Authorization' : `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         }
       }
 
       axios.post('http://localhost:3001/posts', req, options)
         .then(result => {
-        console.log(result.data);
-        //navigate('/home');
-      });
+          console.log(result.data);
+          //navigate('/home');
+        });
+    };
   };
-};
 
   return (
-    <div onChange={ createPost } >
+    <Form onSubmit={createPost}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Good News to Share</Card.Header>
           <Card.Body>
 
-           
+
             <Form.Select aria-label="Default select example" className="mb-3">
               <option>What Kind of News?</option>
               <option value="1">Healing!</option>
@@ -64,7 +86,7 @@ const NewPost = (e) => {
               controlId="description"
               label="What Happened?"
               className="mb-3"
-              onChange={e => setDescription(e.target.value) }
+              onChange={e => setDescription(e.target.value)}
             >
               <Form.Control
                 as="textarea"
@@ -77,7 +99,7 @@ const NewPost = (e) => {
               controlId="location"
               label="Where did this happen?"
               className="mb-3"
-              onChange={e => setLocation(e.target.value) }
+              onChange={e => setLocation(e.target.value)}
             >
               <Form.Control
                 as="textarea"
@@ -99,8 +121,8 @@ const NewPost = (e) => {
           </Card.Body>
         </Card>
       </Container>
-    </div>
+    </Form>
   );
- 
+
 };
 export default NewPost;
