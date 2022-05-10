@@ -6,6 +6,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import axios from "axios";
+//import { useNavigate } from "react-router-dom";
 
 const NewPost = (e) => {
   // const [user_name, setUsername] = useState("");
@@ -14,6 +15,7 @@ const NewPost = (e) => {
 
   const createPost = () => {
     //e.preventDefault();
+    //const navigate = useNavigate();
 
     if (description !== '' && location !== '') {
       const req = {
@@ -36,12 +38,13 @@ const NewPost = (e) => {
       axios.post('http://localhost:3001/posts', req, options)
         .then(result => {
         console.log(result.data);
+        //navigate('/home');
       });
   };
 };
 
   return (
-    <div onChange={ createPost} >
+    <div onChange={ createPost } >
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Good News to Share</Card.Header>
