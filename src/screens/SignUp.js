@@ -30,6 +30,9 @@ const SignUp = () => {
     axios.post(`${url}/signup`, req)
     .then(result => {
       console.log(result);
+
+      navigate('/login');
+
     }, err => {
       console.log(err)
     }) 
@@ -141,7 +144,7 @@ const SignUp = () => {
                         
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
 
-                        <button type="submit" onClick={() => {navigate('/login')}} className="btn btn-primary btn-lg" >
+                        <button type="submit" className="btn btn-primary btn-lg" >
                           Sign Up!
                         </button>
 

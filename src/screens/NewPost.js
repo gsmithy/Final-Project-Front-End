@@ -4,21 +4,74 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
+import { useState, useEffect } from "react";
+import axios from "axios";
+//import { useNavigate } from "react-router-dom";
 
 const NewPost = () => {
+  // const [user_name, setUsername] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [user, setUser] = useState(null)
+
+
+  useEffect(() => {
+    let token = localStorage.getItem("myJWT");
+
+    console.log(token);
+    const options = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+
+    axios.post('http://localhost:3001/users/getOne', { jwt: token }, options).then((res) => {
+      console.log(res);
+      setUser(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+
+
+  const createPost = (e) => {
+    e.preventDefault();
+    //const navigate = useNavigate();
+
+    if (description !== '' && location !== '') {
+      const req = {
+        description,
+        location, 
+        username: user.user_name
+      }
+
+      const token = localStorage.getItem('myJWT')
+
+      // if (!token) {
+      //   //Redirect
+      // };
+
+      const options = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+
+      axios.post('http://localhost:3001/posts', req, options)
+        .then(result => {
+          console.log(result.data);
+          //navigate('/home');
+        });
+    };
+  };
+
   return (
-    <div>
+    <Form onSubmit={createPost}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Good News to Share</Card.Header>
           <Card.Body>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Email address"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
+
 
             <Form.Select aria-label="Default select example" className="mb-3">
               <option>What Kind of News?</option>
@@ -30,9 +83,23 @@ const NewPost = () => {
             </Form.Select>
 
             <FloatingLabel
-              controlId="floatingTextarea2"
+              controlId="description"
               label="What Happened?"
               className="mb-3"
+              onChange={e => setDescription(e.target.value)}
+            >
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a testimony here"
+                style={{ height: "100px" }}
+              />
+            </FloatingLabel>
+
+            <FloatingLabel
+              controlId="location"
+              label="Where did this happen?"
+              className="mb-3"
+              onChange={e => setLocation(e.target.value)}
             >
               <Form.Control
                 as="textarea"
@@ -42,7 +109,7 @@ const NewPost = () => {
             </FloatingLabel>
 
             <Form.Group controlId="formFileMultiple" className="mb-3">
-              <Form.Label>Input Pictures or Videos!</Form.Label>
+              <Form.Label>Upload Pictures or Videos!</Form.Label>
               <Form.Control type="file" multiple />
             </Form.Group>
 
@@ -54,8 +121,8 @@ const NewPost = () => {
           </Card.Body>
         </Card>
       </Container>
-    </div>
+    </Form>
   );
-};
 
+};
 export default NewPost;

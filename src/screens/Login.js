@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import FormGroup from "react-bootstrap/FormGroup";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
@@ -12,6 +12,7 @@ import { useState } from "react";
 const Login = () => {
   const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    let navigate = useNavigate();
 
     const signIn = (e) => {
         e.preventDefault();
@@ -26,6 +27,7 @@ const Login = () => {
                 const token = result.data.jwt;
                 localStorage.setItem('myJWT', token)
                 console.log(result.data);
+                navigate("/")
             })
         }
     }
