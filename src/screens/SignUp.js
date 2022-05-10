@@ -30,7 +30,9 @@ const SignUp = () => {
     axios.post(`${url}/signup`, req)
     .then(result => {
       console.log(result);
+
       navigate('/login');
+
     }, err => {
       console.log(err)
     }) 

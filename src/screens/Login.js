@@ -12,6 +12,7 @@ import { useState } from "react";
 const Login = () => {
   const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    let navigate = useNavigate();
 
     const signIn = (e) => {
         e.preventDefault();
@@ -26,6 +27,7 @@ const Login = () => {
                 const token = result.data.jwt;
                 localStorage.setItem('myJWT', token)
                 console.log(result.data);
+                navigate("/")
             })
         }
     }
