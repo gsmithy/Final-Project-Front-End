@@ -7,9 +7,9 @@ export default class Header extends React.Component {
   render() {
     return (
       <div>
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="light" variant="light">
           <Container>
-            <Navbar.Brand href="/">Good News!</Navbar.Brand>
+            <Navbar.Brand href="/"><img src='/Vector.svg'/></Navbar.Brand>
             <Nav className=" d-flex justify-content-end">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/login">Login</Nav.Link>

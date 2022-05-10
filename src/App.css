@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.pp {
+  height: 20vmin;
+  width: 20vmin;
+  display: flex;
+}
+.btn {
+  margin-right: 1vmin;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
