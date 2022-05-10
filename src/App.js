@@ -19,14 +19,9 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/newpost" element={<NewPost />} />
-<<<<<<< HEAD
           <Route path='/profile/:username' element={<Profile />} />
           <Route path="/Sign%20Up" element={<SignUp />} />
           <Route exact path="/" element={<Home />} />
-=======
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/sign%20up" element={<SignUp />} />
->>>>>>> dev
         </Routes>
       </div>
     </Router>
