@@ -29,24 +29,14 @@ const Profile = () => {
     console.log(user);
   }, []);
 
-
-
-
-
-
-
-
-
-
   if (user === null) {
     return <div>loading user</div>;
   } else {
     return (
       <div>
-
         <ListGroup variant="flush">
-        <ListGroup.Item>{user.user_name}</ListGroup.Item>
-        <ListGroup.Item>
+          <ListGroup.Item>{user.user_name}</ListGroup.Item>
+          <ListGroup.Item>
             {user.first_name} {user.last_name}
           </ListGroup.Item>
           <ListGroup.Item>{user.email}</ListGroup.Item>
@@ -56,9 +46,6 @@ const Profile = () => {
           <ListGroup.Item>{user.zip_code}</ListGroup.Item>
           <ListGroup.Item>{user.country}</ListGroup.Item>
         </ListGroup>
-
-
-
       </div>
     );
   }

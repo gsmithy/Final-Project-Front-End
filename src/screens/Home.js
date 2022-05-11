@@ -1,5 +1,6 @@
 import React from "react";
-
+import PersonList from '../components/HomeDB'
+import BibleVerses from "../components/Bible";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <li>
       <PersonList />
       </li>
+      <BibleVerses/>
     </div>
   );
 };

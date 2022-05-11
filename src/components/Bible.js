@@ -6,25 +6,34 @@ export default class BibleVerses extends React.Component {
     verses: []
   }
 
-  componentDidMount() {
-    axios.get('https://bible-api.com/' + book + chapter + ':' + verse)
+  async componentDidMount() {
+   await axios.get('https://bible-api.com/john 3:16')
+  //  console.log(response)
       .then(res => {
         const verses = res.data;
-        console.log(verses);
+        // console.log(verses);
         this.setState({ verses });
       })
   }
 
   render() {
     return (
-      <ul>
+
+      
+
+      <div>
+        {/* <ul>
         {
-          this.state.verses
-            .map(verses =>
-              <li key={verses.reference}>{verses.text}</li>
+          this.state.persons
+            .map(person =>
+              <li key={person.id}>{person.name}</li>
             )
         }
-      </ul>
-    )
+      </ul> */}
+
+        {
+          `${this.state.verses.text}`
+        } 
+      </div>)
   }
 }
