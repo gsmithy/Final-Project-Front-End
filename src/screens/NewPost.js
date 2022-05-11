@@ -21,7 +21,7 @@ const NewPost = () => {
     const options = {
       headers: {
         Authorization: `Bearer ${token}`,
-      },
+      }
     };
 
     axios
@@ -54,7 +54,7 @@ const NewPost = () => {
       const options = {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       };
 
       axios.post("http://localhost:3001/posts", req, options).then((result) => {
