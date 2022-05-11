@@ -1,39 +1,22 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-export default class BibleVerses extends React.Component {
-  state = {
-    verses: []
-  }
+const ApiCall = () => {
+  const [verse, setVerse] = useState("");
 
-  async componentDidMount() {
-   await axios.get('https://bible-api.com/john 3:16')
-  //  console.log(response)
-      .then(res => {
-        const verses = res.data;
-        // console.log(verses);
-        this.setState({ verses });
-      })
-  }
+  axios
+    .get("https://bible-api.com/john 3:16")
+    //console.log(response)
+    .then((res) => {
+      setVerse(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
 
-  render() {
-    return (
+      // console.log(verses);
+    });
 
-      
+  return (<div>{`"${verse.text}"`}</div>);
+};
 
-      <div>
-        {/* <ul>
-        {
-          this.state.persons
-            .map(person =>
-              <li key={person.id}>{person.name}</li>
-            )
-        }
-      </ul> */}
-
-        {
-          `${this.state.verses.text}`
-        } 
-      </div>)
-  }
-}
+export default ApiCall;
