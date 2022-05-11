@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const NewPost = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,31 +20,32 @@ const NewPost = () => {
     console.log(token);
     const options = {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-    axios.post('http://localhost:3001/users/getOne', { jwt: token }, options).then((res) => {
-      console.log(res);
-      setUser(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-  }, [])
-
+    axios
+      .post("http://localhost:3001/users/getInfo", { jwt: token }, options)
+      .then((res) => {
+        // console.log(res);
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const createPost = (e) => {
     e.preventDefault();
-    
 
-    if (description !== '' && location !== '') {
+    if (description !== "" && location !== "") {
       const req = {
         description,
-        location, 
+        location,
         username: user.user_name
-      }
+      };
 
-      const token = localStorage.getItem('myJWT')
+      const token = localStorage.getItem("myJWT");
 
       // if (!token) {
       //   //Redirect
@@ -52,16 +53,15 @@ const NewPost = () => {
 
       const options = {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-      axios.post('http://localhost:3001/posts', req, options)
-        .then(result => {
-          console.log(result.data);
-          navigate('/');
-        });
-    };
+      axios.post("http://localhost:3001/posts", req, options).then((result) => {
+        console.log(result.data);
+        navigate("/");
+      });
+    }
   };
 
   return (
@@ -70,8 +70,6 @@ const NewPost = () => {
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Good News to Share</Card.Header>
           <Card.Body>
-
-
             <Form.Select aria-label="Default select example" className="mb-3">
               <option>What Kind of News?</option>
               <option value="1">Healing!</option>
@@ -85,7 +83,7 @@ const NewPost = () => {
               controlId="description"
               label="What Happened?"
               className="mb-3"
-              onChange={e => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
             >
               <Form.Control
                 as="textarea"
@@ -98,7 +96,7 @@ const NewPost = () => {
               controlId="location"
               label="Where did this happen?"
               className="mb-3"
-              onChange={e => setLocation(e.target.value)}
+              onChange={(e) => setLocation(e.target.value)}
             >
               <Form.Control
                 as="textarea"
@@ -122,6 +120,5 @@ const NewPost = () => {
       </Container>
     </Form>
   );
-
 };
 export default NewPost;
