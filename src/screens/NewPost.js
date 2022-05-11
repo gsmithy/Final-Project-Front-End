@@ -6,14 +6,13 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NewPost = () => {
-  // const [user_name, setUsername] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [user, setUser] = useState(null)
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     let token = localStorage.getItem("myJWT");
@@ -36,7 +35,7 @@ const NewPost = () => {
 
   const createPost = (e) => {
     e.preventDefault();
-    //const navigate = useNavigate();
+    
 
     if (description !== '' && location !== '') {
       const req = {
@@ -60,7 +59,7 @@ const NewPost = () => {
       axios.post('http://localhost:3001/posts', req, options)
         .then(result => {
           console.log(result.data);
-          //navigate('/home');
+          navigate('/');
         });
     };
   };
