@@ -1,13 +1,11 @@
 import React from "react";
+import PersonList from "../components/HomeDB";
 
 
 const Home = () => {
   return (
     <div>
-      <h2>Home</h2>
-      <li>
-  
-      </li>
+        <PersonList></PersonList>
     </div>
   );
 };
