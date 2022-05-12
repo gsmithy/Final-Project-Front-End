@@ -1,12 +1,17 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Card, Container, Button, ListGroup } from "react-bootstrap";
+import EditPost from "./UpdatePost";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState(null);
+  const [component, setComponent] = useState(null);
 
   useEffect(() => {
+
+    
+
     let token = localStorage.getItem("myJWT");
 
     // console.log(token);
@@ -50,6 +55,11 @@ const Profile = () => {
   // console.log("user", user);
   // console.log("posts", posts);
 
+  const buttonFunction = () => {
+    setComponent(<EditPost/>)
+ };
+
+
   if (user === null) {
     return <div>loading user...</div>;
   } else {
@@ -78,7 +88,7 @@ const Profile = () => {
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
                   <Card.Text>{post.description}</Card.Text>
-                  <Button className="btn" variant="primary">
+                  <Button onClick={this.buttonFunction()} className="btn" variant="primary">
                     edit
                   </Button>
                   <Button className="btn" variant="danger">

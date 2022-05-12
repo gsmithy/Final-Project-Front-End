@@ -4,13 +4,12 @@ import { Card, Container, Button, ListGroup } from "react-bootstrap";
 
 
 const DeletePost = () => {
-  const [post, deletePost] = useState([]);
-
-  let { id } = useParams();
+  const [post, deletePost] = useState('');
 
   useEffect(() => {
-    const url = `http://localhost:3001/posts/${id}`;
-    axios.delete(url).then((res) => {
+
+
+    axios.delete('http://localhost:3001/posts').then((res) => {
       deletePost(res.data);
     });
   }, [id]);

@@ -40,9 +40,11 @@ const NewPost = () => {
 
     if (description !== "" && location !== "") {
       const req = {
+        username: user.user_name,
         description,
         location,
-        username: user.user_name
+        // id: user.id
+        
       };
 
       const token = localStorage.getItem("myJWT");

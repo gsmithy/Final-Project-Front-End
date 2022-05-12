@@ -6,8 +6,10 @@ import NewPost from "./screens/NewPost";
 import Profile from "./screens/Profile/Profile";
 import SignUp from "./screens/SignUp";
 import Header from "./components/Header";
+import EditPost from "./screens/Profile/UpdatePost";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 
 const App = () => {
   return (
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/newpost" element={<NewPost />} />
           <Route exact path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/updatePost" element={<EditPost />} />
           <Route path="/signup" element={<SignUp />} />
 
         </Routes>
