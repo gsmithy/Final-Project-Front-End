@@ -1,12 +1,11 @@
 import React from "react";
-import PersonList from '../components/HomeDB'
-import ApiCall from "../components/Bible";
+import PersonList from "../components/HomeDB";
+
 
 const Home = () => {
   return (
     <div>
-      <PersonList />
-      <ApiCall />
+        <PersonList />
     </div>
   );
 };
