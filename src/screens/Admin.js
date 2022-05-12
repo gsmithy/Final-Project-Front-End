@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import useAuth from "../hooks/useAuth";
+
 
 
 //Component is not rendering to page. "Undefined" error.
 const Admin = () => {
-    const { setAuth } =useAuth();
+   
 
     const [user, setUser] = useState();
 
@@ -29,9 +29,9 @@ const Admin = () => {
     return (
         <div>
             <h1>All Users</h1>
-            <ul>
+            {/* <ul>
               {user.map(user => <li> {user.user_name} </li>)}
-            </ul>   
+            </ul>    */}
         </div>
     );
 };
