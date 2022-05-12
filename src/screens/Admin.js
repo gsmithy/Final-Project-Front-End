@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 
 //Component is not rendering to page. "Undefined" error.
 const Admin = () => {
+    const { setAuth } =useAuth();
+
     const [user, setUser] = useState();
 
     useEffect(() => {
@@ -17,8 +20,9 @@ const Admin = () => {
 
         axios.get('/http://localhost:3001/admin', { jwt: token }, options)
         .then(user => {
-            console.log(user);
+          
             setUser(user.data);
+            console.log(user);
         })
     }, []);
 

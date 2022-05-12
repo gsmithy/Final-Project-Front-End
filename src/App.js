@@ -8,6 +8,7 @@ import SignUp from "./screens/SignUp";
 import Header from "./components/Header";
 import Admin from "./screens/Admin";
 import Missing from "./screens/Missing";
+import RequireAuth from "./components/RequireAuth";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -26,7 +27,9 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
         {/* //Protected Routes */}
-          <Route path="/admin" element={<Admin />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
          {/* //Catch All */}
           <Route path="/missing" element={<Missing />} />
         </Routes>
