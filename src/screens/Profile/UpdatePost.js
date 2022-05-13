@@ -9,81 +9,44 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const EditPost = () => {
-  
+
+  const navigate = useNavigate();
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [user, setUser] = useState(null);
+
+
+  useEffect(()=> {
+
+    // console.log( 'des', description, 'loc', location,'user' ,user )
+  }, [])
   
-  const navigate = useNavigate();
+ 
 
-  useEffect(() => {
-    let token = localStorage.getItem("myJWT");
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    };
-    axios
-      .post("http://localhost:3001/users/getInfo", { jwt: token }, options)
-      .then((res) => {
-        // console.log(res);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const updatePost = () => {}
 
-      // axios
-      // .post("http://localhost:3001/posts/getPost/", { jwt: token }, options)
-      // .then((res) => {
-      //   setPosts(res.data);
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
-  }, []);
+    // const req = {
+    //   description: req.body.description,
+    //   location: req.body.location  
+    // }
 
+  //   axios.put('http://localhost:3001/posts', req ).then(res => {
+  //     res.setDescription(res.description)
+  //     res.setLocation(res.location)
+  //   })
+  // }
 
-  const createEdit = (e) => {
+  const submission = (e) => {
     e.preventDefault();
-
-    if (description !== "" && location !== "") {
-      const req = {
-        username: user.user_name,
-        description,
-        location,
-        // id: user.id
-        
-      };
-    const token = localStorage.getItem("myJWT");
-
-    const options = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      };
-
-      axios.put("http://localhost:3001/posts", req, options).then((result) => {
-        console.log(result.data);
-        navigate("/profile");
-      });
-    }
-  };
+  }
 
   return (
-    <Form onSubmit={createEdit}>
+    <Form onSubmit={submission}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Edit Your News..</Card.Header>
           <Card.Body>
-            <Form.Select aria-label="Default select example" className="mb-3">
-              <option>What Kind of News?</option>
-              <option value="1">Healing!</option>
-              <option value="2">Financial Provision!</option>
-              <option value="3">Relationship Restoration!</option>
-              <option value="4">Miracle!</option>
-              <option value="5">Other!</option>
-            </Form.Select>
+
 
             <FloatingLabel
               controlId="description"
@@ -110,12 +73,6 @@ const EditPost = () => {
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
-
-            <Form.Group controlId="formFileMultiple" className="mb-3">
-              <Form.Label>Upload Pictures or Videos!</Form.Label>
-              <Form.Control type="file" multiple />
-            </Form.Group>
-
             <Form.Group className="d-flex justify-content-end">
               <Button variant="secondary" type="submit">
                 Submit
@@ -127,4 +84,5 @@ const EditPost = () => {
     </Form>
   );
 };
+
 export default EditPost;

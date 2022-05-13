@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Card, Container, Button, ListGroup } from "react-bootstrap";
 import EditPost from "./UpdatePost";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState(null);
   const [component, setComponent] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -56,7 +58,7 @@ const Profile = () => {
   // console.log("posts", posts);
 
   const buttonFunction = () => {
-    setComponent(<EditPost/>)
+    navigate('/profile/updatePost')
  };
 
 
@@ -88,7 +90,7 @@ const Profile = () => {
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
                   <Card.Text>{post.description}</Card.Text>
-                  <Button onClick={this.buttonFunction()} className="btn" variant="primary">
+                  <Button onClick={buttonFunction} className="btn" variant="primary">
                     edit
                   </Button>
                   <Button className="btn" variant="danger">
