@@ -7,7 +7,7 @@ import axios from "axios";
 const Admin = () => {
    
 
-    const [user, setUser] = useState();
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         let token = localStorage.getItem("myJWT");
@@ -18,20 +18,20 @@ const Admin = () => {
             }
           }
 
-        axios.get('/http://localhost:3001/admin', { jwt: token }, options)
-        .then(user => {
-          
-            setUser(user.data);
-            console.log(user);
+        axios.get('http://localhost:3001/admin', options)
+        .then(users => {
+            setUsers(users.data);
+            console.log(users);
         })
     }, []);
 
     return (
         <div>
             <h1>All Users</h1>
-            {/* <ul>
-              {user.map(user => <li> {user.user_name} </li>)}
-            </ul>    */}
+            <ul>
+              {users.map(user => <li> {user.user_name} </li>)}
+              {/* { console.log(users) } */}
+            </ul>   
         </div>
     );
 };
