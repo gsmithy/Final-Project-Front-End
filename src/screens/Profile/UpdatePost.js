@@ -11,10 +11,11 @@ import { useNavigate, useParams } from "react-router-dom";
 const EditPost = () => {
 
   const navigate = useNavigate();
-  const [currentD, setCurrentD] = useState('');
-  const [currentL, setCurrentL] = useState('');
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
+  // const [currentD, setCurrentD] = useState('');
+  // const [currentL, setCurrentL] = useState('');
+  // const [description, setDescription] = useState("");
+  // const [location, setLocation] = useState("");
+  const [post, setPost] = useState('')
 
   const [user, setUser] = useState(null);
 
@@ -24,23 +25,19 @@ const EditPost = () => {
     
     axios.get(`http://localhost:3001/posts/getPost/${params.id}`).then(res => {
 
-      setCurrentD(res.data);
-      setCurrentL(res.data);
-      
+      setPost(res.data);
+    
     }
       // console.log(res)
     )
 
    
-  }, [])
-  const locationId = controlId
- 
-
-  const updatePost = () => {
-
-
-    console.log(params.id)
+  }, []);
+  const updatePost = (e) => {
+    e.preventDefault();
+    console.log()
   }
+ 
 
     // const req = {
     //   description: req.body.description,
@@ -52,13 +49,8 @@ const EditPost = () => {
   //     res.setLocation(res.location)
   //   })
   // }
-
-  const submission = (e) => {
-    e.preventDefault();
-  }
-
   return (
-    <Form onSubmit={submission}>
+    <Form onSubmit={updatePost}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Edit Your News..</Card.Header>
@@ -68,9 +60,10 @@ const EditPost = () => {
             <FloatingLabel
               controlId="description"
               className="mb-3"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setPost({description: e.target.value})}
             >
               <Form.Control
+                value={post.description}
                 as="textarea"
                 style={{ height: "100px" }}
               />
@@ -79,10 +72,11 @@ const EditPost = () => {
             <FloatingLabel
               controlId="location"
               className="mb-3"
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(e) => setPost({location: e.target.value})}
             >
               <Form.Control
                 as="textarea"
+                value={post.location}
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
