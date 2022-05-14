@@ -27,9 +27,9 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
         {/* //Protected Routes */}
-          <Route element={<RequireAuth />}>
+          {/* <Route element={<RequireAuth />}> */}
             <Route path="/admin" element={<Admin />} />
-          </Route>
+          {/* </Route> */}
          {/* //Catch All */}
           <Route path="/missing" element={<Missing />} />
         </Routes>

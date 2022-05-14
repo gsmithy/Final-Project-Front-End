@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {Card, Container, Button, ListGroup} from "react-bootstrap";
 
 
 
@@ -29,8 +30,19 @@ const Admin = () => {
         <div>
             <h1>All Users</h1>
             <ul>
-              {users.map(user => <li> {user.user_name} </li>)}
-              {/* { console.log(users) } */}
+              {users.map(user => 
+                <Card key={user.user_name}>
+                  <Card.Header as="h5">User</Card.Header>
+                  <Card.Body>
+                  <Card.Title>{user.first_name}</Card.Title>
+                  <Card.Text>{user.last_name}</Card.Text>
+                 
+            <Button className="btn" variant="danger">
+              delete
+            </Button>
+          </Card.Body>
+        </Card>
+        )}
             </ul>   
         </div>
     );
