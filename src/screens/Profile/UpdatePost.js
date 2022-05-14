@@ -9,58 +9,75 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditPost = () => {
-
   const navigate = useNavigate();
-  // const [currentD, setCurrentD] = useState('');
-  // const [currentL, setCurrentL] = useState('');
-  // const [description, setDescription] = useState("");
-  // const [location, setLocation] = useState("");
-  const [post, setPost] = useState('')
+  const [post, setPost] = useState("");
+ 
 
   const [user, setUser] = useState(null);
 
-  const params = useParams();
+  let params = useParams();
 
-  useEffect(()=> {
-    
-    axios.get(`http://localhost:3001/posts/getPost/${params.id}`).then(res => {
+  useEffect(() => {
+    axios.get(`http://localhost:3001/posts/getPost/${params.id}`).then(
+      (res) => {
+        console.log("params", params);
+        console.log("setPost", res.data);
+        setPost(res.data);
+        console.log("post", post.id);
+      }
 
-      setPost(res.data);
-    
-    }
       // console.log(res)
-    )
-
-   
+    );
   }, []);
+
   const updatePost = (e) => {
     e.preventDefault();
-    console.log()
-  }
- 
+    // console.log('post', post)
 
-    // const req = {
-    //   description: req.body.description,
-    //   location: req.body.location  
+    //  if (post.description !== "" && post.location !== "") {
+
+    const req = {
+      description: post.description,
+      location: post.location,
+      
+    };
+
+    const token = localStorage.getItem("myJWT");
+
+    // if (!token) {
+    //   // navigate("/login");
+    //   console.log("no token");
     // }
 
-  //   axios.put('http://localhost:3001/posts', req ).then(res => {
-  //     res.setDescription(res.description)
-  //     res.setLocation(res.location)
-  //   })
-  // }
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const url = `http://localhost:3001/posts/${params.id}`;
+    axios.put(url, req).then(
+      (res) => {
+        console.log(res.data);
+        //navigate("/profile");
+      },
+      (err) => {
+        // localStorage.removeItem("myJWT");
+      }
+    );
+  };
+  // };
+
   return (
     <Form onSubmit={updatePost}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Edit Your News..</Card.Header>
           <Card.Body>
-
-
             <FloatingLabel
               controlId="description"
               className="mb-3"
-              onChange={(e) => setPost({description: e.target.value})}
+              onChange={(event) => setPost({ description: event.target.value })}
             >
               <Form.Control
                 value={post.description}
@@ -72,7 +89,7 @@ const EditPost = () => {
             <FloatingLabel
               controlId="location"
               className="mb-3"
-              onChange={(e) => setPost({location: e.target.value})}
+              onChange={(event) => setPost({ location: event.target.value })}
             >
               <Form.Control
                 as="textarea"
