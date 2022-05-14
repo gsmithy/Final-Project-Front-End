@@ -7,7 +7,10 @@ import Profile from "./screens/Profile";
 import SignUp from "./screens/SignUp";
 import Header from "./components/Header";
 
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+
 
 const App = () => {
   return (
@@ -28,5 +31,11 @@ const App = () => {
     </Router>
   );
 }
+
+
+
+
+
+
 
 export default App;
