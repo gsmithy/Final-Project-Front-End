@@ -16,6 +16,11 @@
   pointer-events: none;
 }
 
+.img-fluid {
+  width: auto;
+  max-height: 50vmin;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

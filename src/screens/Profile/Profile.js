@@ -4,6 +4,7 @@ import { Card, Container, Button, ListGroup } from "react-bootstrap";
 import EditPost from "./UpdatePost";
 import { useNavigate } from "react-router-dom";
 
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState(null);
@@ -46,9 +47,10 @@ const Profile = () => {
     };
 
     axios
-      .post("http://localhost:3001/posts/getPost", { jwt: token }, options)
+      .post("http://localhost:3001/users/getInfo", { jwt: token }, options)
       .then((res) => {
         setPosts(res.data);
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err);
@@ -62,7 +64,7 @@ const Profile = () => {
  };
 
 
-  if (user === null) {
+  if (user === null || posts === null) {
     return <div>loading user...</div>;
   } else {
     return (
@@ -84,15 +86,14 @@ const Profile = () => {
             <ListGroup.Item>{user.country}</ListGroup.Item>
           </ListGroup>
           <ul>
-            {posts.map((post) => (
+            {user.Posts.map((post) => (
               <Card key={post.user_name}>
                 <Card.Header as="h5">...</Card.Header>
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
                   <Card.Text>{post.description}</Card.Text>
-                  <Button onClick={buttonFunction} className="btn" variant="primary">
-                    edit
-                  </Button>
+                  <a href={`/profile/updatePost/${post.id}`} className="btn" variant="primary" >edit
+                  </a>
                   <Button className="btn" variant="danger">
                     delete
                   </Button>

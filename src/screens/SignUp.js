@@ -49,9 +49,17 @@ const SignUp = () => {
               <div className="card-body p-md-5">
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                  <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <img
+                      src="signup.webp"
+                      className="img-fluid"
+                      alt="Sample"
+                    />
+                    </div>
                     <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                      Create Your Account!
+                      Please Sign Up!
                     </p>
+                    
 
                     <form onSubmit={createUser} className="mx-1 mx-md-4">
                       <div className="d-flex flex-row align-items-center mb-4">
@@ -151,13 +159,7 @@ const SignUp = () => {
                       </div>
                     </form>
                   </div>
-                  <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                      className="img-fluid"
-                      alt="Sample"
-                    />
-                  </div>
+                  
                 </div>
               </div>
             </div>

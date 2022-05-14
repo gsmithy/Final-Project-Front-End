@@ -6,24 +6,41 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditPost = () => {
 
   const navigate = useNavigate();
+  const [currentD, setCurrentD] = useState('');
+  const [currentL, setCurrentL] = useState('');
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+
   const [user, setUser] = useState(null);
 
+  const params = useParams();
 
   useEffect(()=> {
+    
+    axios.get(`http://localhost:3001/posts/getPost/${params.id}`).then(res => {
 
-    // console.log( 'des', description, 'loc', location,'user' ,user )
+      setCurrentD(res.data);
+      setCurrentL(res.data);
+      
+    }
+      // console.log(res)
+    )
+
+   
   }, [])
-  
+  const locationId = controlId
  
 
-  const updatePost = () => {}
+  const updatePost = () => {
+
+
+    console.log(params.id)
+  }
 
     // const req = {
     //   description: req.body.description,
@@ -50,26 +67,22 @@ const EditPost = () => {
 
             <FloatingLabel
               controlId="description"
-              label="What Happened?"
               className="mb-3"
               onChange={(e) => setDescription(e.target.value)}
             >
               <Form.Control
                 as="textarea"
-                placeholder="Leave a testimony here"
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
 
             <FloatingLabel
               controlId="location"
-              label="Where did this happen?"
               className="mb-3"
               onChange={(e) => setLocation(e.target.value)}
             >
               <Form.Control
                 as="textarea"
-                placeholder="Leave a testimony here"
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
