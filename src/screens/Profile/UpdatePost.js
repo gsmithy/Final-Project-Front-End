@@ -13,14 +13,13 @@ const EditPost = () => {
   const [post, setPost] = useState("");
  
 
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
 
   let params = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:3001/posts/getPost/${params.id}`).then(
       (res) => {
-        console.log("params", params);
         console.log("setPost", res.data);
         setPost(res.data);
         console.log("post", post.id);
@@ -36,7 +35,7 @@ const EditPost = () => {
 
     //  if (post.description !== "" && post.location !== "") {
 
-    const req = {
+    let req = {
       description: post.description,
       location: post.location,
       
@@ -55,8 +54,7 @@ const EditPost = () => {
       },
     };
 
-    const url = `http://localhost:3001/posts/${params.id}`;
-    axios.put(url, req).then(
+    axios.put(`http://localhost:3001/posts/${params.id}`, req).then(
       (res) => {
         console.log(res.data);
         //navigate("/profile");
@@ -77,10 +75,11 @@ const EditPost = () => {
             <FloatingLabel
               controlId="description"
               className="mb-3"
-              onChange={(event) => setPost({ description: event.target.value })}
+             
             >
               <Form.Control
                 value={post.description}
+                onChange={(event) => setPost({description: event.target.value})}
                 as="textarea"
                 style={{ height: "100px" }}
               />
@@ -89,11 +88,12 @@ const EditPost = () => {
             <FloatingLabel
               controlId="location"
               className="mb-3"
-              onChange={(event) => setPost({ location: event.target.value })}
+              
             >
               <Form.Control
                 as="textarea"
                 value={post.location}
+                onChange={(event) => setPost({location: event.target.value })}
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
