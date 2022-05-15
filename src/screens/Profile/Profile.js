@@ -2,20 +2,17 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Card, Container, Button, ListGroup } from "react-bootstrap";
 import EditPost from "./UpdatePost";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState(null);
   const [component, setComponent] = useState(null);
   const navigate = useNavigate();
+  const params = useParams();
 
   useEffect(() => {
-
-    
-
-    let token = localStorage.getItem("myJWT");
+    const token = localStorage.getItem("myJWT");
 
     // console.log(token);
     const options = {
@@ -50,7 +47,7 @@ const Profile = () => {
       .post("http://localhost:3001/users/getInfo", { jwt: token }, options)
       .then((res) => {
         setPosts(res.data);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -59,10 +56,7 @@ const Profile = () => {
   // console.log("user", user);
   // console.log("posts", posts);
 
-  const buttonFunction = () => {
-    navigate('/profile/updatePost')
- };
-
+  
 
   if (user === null || posts === null) {
     return <div>loading user...</div>;
@@ -92,11 +86,13 @@ const Profile = () => {
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
                   <Card.Text>{post.description}</Card.Text>
-                  <a href={`/profile/updatePost/${post.id}`} className="btn" variant="primary" >edit
+                  <a
+                    href={`/profile/updatePost/${post.id}`}
+                    className="btn"
+                    variant="primary"
+                  >
+                    edit
                   </a>
-                  <Button className="btn" variant="danger">
-                    delete
-                  </Button>
                 </Card.Body>
               </Card>
             ))}
@@ -108,8 +104,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-
-
-

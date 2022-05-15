@@ -11,22 +11,19 @@ import { useNavigate, useParams } from "react-router-dom";
 const EditPost = () => {
   const navigate = useNavigate();
   const [post, setPost] = useState("");
- 
-
-  // const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState(null);
   let params = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/posts/getPost/${params.id}`).then(
-      (res) => {
-        console.log("setPost", res.data);
+    let token = localStorage.getItem("myJWT");
+    axios
+      .get(`http://localhost:3001/posts/getPost/${params.id}`)
+      .then((res) => {
         setPost(res.data);
+        setUser(res.data);
+        console.log("setPost", res.data);
         console.log("post", post.id);
-      }
-
-      // console.log(res)
-    );
+      });
   }, []);
 
   const updatePost = (e) => {
@@ -38,23 +35,20 @@ const EditPost = () => {
     let req = {
       description: post.description,
       location: post.location,
-      
+      // user: user.user_name,
+      // id: user.id,
     };
-
     const token = localStorage.getItem("myJWT");
-
-    // if (!token) {
-    //   // navigate("/login");
-    //   console.log("no token");
-    // }
-
+    if (!token) {
+      // navigate("/login");
+      console.log("no token");
+    }
     const options = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-
-    axios.put(`http://localhost:3001/posts/${params.id}`, req).then(
+    axios.put(`http://localhost:3001/posts/${params.id}`, req, options).then(
       (res) => {
         console.log(res.data);
         //navigate("/profile");
@@ -66,40 +60,59 @@ const EditPost = () => {
   };
   // };
 
+  const deletePost = () => {
+    const token = localStorage.getItem("myJWT");
+
+    if (!token) {
+      console.log("sorry no token");
+    }
+    const options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios.delete(`http://localhost:3001/posts/${params.id}`, options).then(
+      (res) => {
+        console.log(res.data, "delete success");
+        navigate('/profile')
+      },
+      (err) => {
+        console.log("ooops, something went wrong!");
+        localStorage.removeItem("myJWT");
+      }
+    );
+  };
   return (
     <Form onSubmit={updatePost}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Edit Your News..</Card.Header>
           <Card.Body>
-            <FloatingLabel
-              controlId="description"
-              className="mb-3"
-             
-            >
+            <FloatingLabel controlId="description" className="mb-3">
               <Form.Control
                 value={post.description}
-                onChange={(event) => setPost({description: event.target.value})}
+                onChange={(event) =>
+                  setPost({ description: event.target.value })
+                }
                 as="textarea"
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
 
-            <FloatingLabel
-              controlId="location"
-              className="mb-3"
-              
-            >
+            <FloatingLabel controlId="location" className="mb-3">
               <Form.Control
                 as="textarea"
                 value={post.location}
-                onChange={(event) => setPost({location: event.target.value })}
+                onChange={(event) => setPost({ location: event.target.value })}
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
             <Form.Group className="d-flex justify-content-end">
               <Button variant="secondary" type="submit">
                 Submit
+              </Button>
+              <Button onClick={deletePost} variant="secondary">
+                delete
               </Button>
             </Form.Group>
           </Card.Body>
