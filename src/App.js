@@ -10,7 +10,7 @@ import Admin from "./screens/Admin";
 import AdminPosts from "./screens/AdminPosts";
 import Missing from "./screens/Missing";
 
-import PrivateRoutes from "./hooks/PrivateRoute";
+//import PrivateRoutes from "./hooks/PrivateRoute";
 //import RequireAuth from "./components/RequireAuth";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

@@ -1,3 +1,5 @@
+//Not currently being used
+
 import { createContext, useState } from "react";
 
 const AuthContext = createContext({});
