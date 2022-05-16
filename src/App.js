@@ -8,7 +8,8 @@ import SignUp from "./screens/SignUp";
 import Header from "./components/Header";
 import Admin from "./screens/Admin";
 import Missing from "./screens/Missing";
-import RequireAuth from "./components/RequireAuth";
+import PrivateRoutes from "./hooks/PrivateRoute";
+//import RequireAuth from "./components/RequireAuth";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -27,9 +28,9 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
         {/* //Protected Routes */}
-          {/* <Route element={<RequireAuth />}> */}
+          <Route element={<PrivateRoutes />}>
             <Route path="/admin" element={<Admin />} />
-          {/* </Route> */}
+          </Route>
          {/* //Catch All */}
           <Route path="/missing" element={<Missing />} />
         </Routes>
