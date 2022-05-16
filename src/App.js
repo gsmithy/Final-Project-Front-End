@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import EditPost from "./screens/Profile/UpdatePost";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ImgUpload from "./screens/Profile/ImgUpload";
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/updatePost/:id" element={<EditPost />} />
+          <Route path="/profile/image/:id" element={<ImgUpload />} />
           <Route path="/signup" element={<SignUp />} />
 
         </Routes>

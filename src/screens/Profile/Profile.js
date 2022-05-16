@@ -7,9 +7,6 @@ import { useNavigate, useParams } from "react-router-dom";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState(null);
-  const [component, setComponent] = useState(null);
-  const navigate = useNavigate();
-  const params = useParams();
 
   useEffect(() => {
     const token = localStorage.getItem("myJWT");
@@ -56,8 +53,6 @@ const Profile = () => {
   // console.log("user", user);
   // console.log("posts", posts);
 
-  
-
   if (user === null || posts === null) {
     return <div>loading user...</div>;
   } else {
@@ -66,7 +61,16 @@ const Profile = () => {
         <Container className="p-4 d-flex justify-content-center">
           <ListGroup variant="flush">
             <div>
-              <img className="pp" src="/mock.jpeg" alt="" />
+              {user.profile_pic ? (
+                <img className="pp" src={user.profile_pic} alt="" width="500" />
+              ) : (
+                ""
+              )}
+              <a
+                href={`/profile/image/${user.id}`}
+                className="btn"
+                variant="primary"
+              >edit pic</a>
             </div>
             <ListGroup.Item>{user.user_name}</ListGroup.Item>
             <ListGroup.Item>

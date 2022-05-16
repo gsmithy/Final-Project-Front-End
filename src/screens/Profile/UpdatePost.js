@@ -10,19 +10,21 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditPost = () => {
   const navigate = useNavigate();
-  const [post, setPost] = useState("");
+  const [posts, setPost] = useState({
+    description: '',
+    location: ''
+  });
   const [user, setUser] = useState(null);
   let params = useParams();
 
   useEffect(() => {
-    let token = localStorage.getItem("myJWT");
     axios
       .get(`http://localhost:3001/posts/getPost/${params.id}`)
       .then((res) => {
         setPost(res.data);
         setUser(res.data);
         console.log("setPost", res.data);
-        console.log("post", post.id);
+        console.log("post", posts.id);
       });
   }, []);
 
@@ -30,11 +32,11 @@ const EditPost = () => {
     e.preventDefault();
     // console.log('post', post)
 
-    //  if (post.description !== "" && post.location !== "") {
+     if (posts.description !== "" && posts.location !== "") {
 
     let req = {
-      description: post.description,
-      location: post.location,
+      description: posts.description,
+      location: posts.location
       // user: user.user_name,
       // id: user.id,
     };
@@ -50,7 +52,7 @@ const EditPost = () => {
     };
     axios.put(`http://localhost:3001/posts/${params.id}`, req, options).then(
       (res) => {
-        console.log(res.data);
+        console.log('res', res.status);
         //navigate("/profile");
       },
       (err) => {
@@ -58,7 +60,7 @@ const EditPost = () => {
       }
     );
   };
-  // };
+  };
 
   const deletePost = () => {
     const token = localStorage.getItem("myJWT");
@@ -88,22 +90,20 @@ const EditPost = () => {
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Edit Your News..</Card.Header>
           <Card.Body>
-            <FloatingLabel controlId="description" className="mb-3">
+            <FloatingLabel label="What Happened?" controlId="description" className="mb-3">
               <Form.Control
-                value={post.description}
-                onChange={(event) =>
-                  setPost({ description: event.target.value })
-                }
+                value={posts.description}
+                onChange={(event) =>setPost({ description: event.target.value })}
                 as="textarea"
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
 
-            <FloatingLabel controlId="location" className="mb-3">
+            <FloatingLabel label="Where did this happen?" controlId="location" className="mb-3">
               <Form.Control
-                as="textarea"
-                value={post.location}
+                value={posts.location}
                 onChange={(event) => setPost({ location: event.target.value })}
+                as="textarea"
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
@@ -112,7 +112,7 @@ const EditPost = () => {
                 Submit
               </Button>
               <Button onClick={deletePost} variant="secondary">
-                delete
+                Delete
               </Button>
             </Form.Group>
           </Card.Body>
