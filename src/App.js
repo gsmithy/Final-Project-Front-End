@@ -24,11 +24,7 @@ const App = () => {
           <Header />
         </div>
         <Routes>
-<<<<<<< HEAD
-          
-=======
         {/* //Public Routes */}
->>>>>>> origin
           <Route path="/login" element={<Login />} />
           <Route path="/newpost" element={<NewPost />} />
           <Route exact path="/" element={<Home />} />
