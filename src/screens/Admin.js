@@ -33,14 +33,14 @@ const Admin = () => {
             </Nav>
             <ul>
               {users.map(user => 
-                <Card key={user.user_name}>
+                <Card key={user.id}>
                   <Card.Header as="h5">User</Card.Header>
                   <Card.Body>
                   <Card.Title>{user.first_name}</Card.Title>
                   <Card.Text>{user.last_name}</Card.Text>
                  
             <Button className="btn" variant="danger">
-              delete
+              Delete
             </Button>
           </Card.Body>
         </Card>

@@ -8,6 +8,7 @@ import { Nav } from "react-bootstrap";
 //Component is not rendering to page. "Undefined" error.
 const AdminPosts = () => {
    const [posts, setPosts] = useState([]);
+   const [status, setStatus] = useState([]);
 
     useEffect(() => {
         let token = localStorage.getItem("myJWT");
@@ -25,6 +26,13 @@ const AdminPosts = () => {
         })
     }, []);
 
+    const deletePost = () => {
+        axios.delete('http://localhost:3001/admin/delete')
+        .then(() => {
+            setStatus('Delete Successfull');
+        })
+    }
+
     return (
         <div>
             <h1>All Posts</h1>
@@ -36,10 +44,10 @@ const AdminPosts = () => {
                 <Card key={posts.id}>
                   <Card.Header as="h5">{posts.user_name}</Card.Header>
                   <Card.Body>
-                  <Card.Title>{posts.description}</Card.Title>
-                  <Card.Text>{posts.location}</Card.Text>
+                  <Card.Title>Good News: {posts.description}</Card.Title>
+                  <Card.Text>Location: {posts.location}</Card.Text>
                  
-            <Button className="btn" variant="danger">
+            <Button onClick={ deletePost } className="btn" variant="danger">
               delete
             </Button>
           </Card.Body>
