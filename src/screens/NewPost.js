@@ -22,7 +22,19 @@ const NewPost = () => {
       headers: {
         Authorization: `Bearer ${token}`,
       }
+<<<<<<< HEAD
     };
+=======
+    }
+
+    axios.post('http://localhost:3001/users/getInfo', { jwt: token }, options).then((res) => {
+      console.log(res);
+      setUser(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+>>>>>>> origin
 
     axios
       .post("http://localhost:3001/users/getInfo", { jwt: token }, options)
