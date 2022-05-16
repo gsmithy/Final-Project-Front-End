@@ -29,7 +29,7 @@ const AdminPosts = () => {
     const deletePost = () => {
         axios.delete('http://localhost:3001/admin/delete')
         .then(() => {
-            setStatus('Delete Successfull');
+            setStatus('Delete Successful');
         })
     }
 

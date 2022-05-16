@@ -10,12 +10,10 @@ import Admin from "./screens/Admin";
 import AdminPosts from "./screens/AdminPosts";
 import Missing from "./screens/Missing";
 
-//import PrivateRoutes from "./hooks/PrivateRoute";
-//import RequireAuth from "./components/RequireAuth";
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
+
   return (
     <Router>
       <div>
@@ -29,13 +27,15 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<SignUp />} />
+
+
         {/* //Protected Routes */}
-          {/* <Route element={<PrivateRoutes />}> */}
             <Route path="/admin" element={<Admin />} />
             <Route path="/adminposts" element={<AdminPosts />} />
-          {/* </Route> */}
+
+
          {/* //Catch All */}
-          <Route path="/missing" element={<Missing />} />
+          <Route path="/*" element={<Missing />} />
         </Routes>
       </div>
     </Router>
