@@ -24,7 +24,7 @@ const NewPost = () => {
       }
     }
 
-    axios.post('http://localhost:3001/users/getOne', { jwt: token }, options).then((res) => {
+    axios.post('http://localhost:3001/users/getInfo', { jwt: token }, options).then((res) => {
       console.log(res);
       setUser(res.data)
     }).catch(err => {
