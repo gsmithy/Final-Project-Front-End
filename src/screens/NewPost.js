@@ -17,11 +17,11 @@ const NewPost = () => {
   useEffect(() => {
     let token = localStorage.getItem("myJWT");
 
-    console.log(token);
+    // console.log(token);
     const options = {
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     };
 
     axios
@@ -40,9 +40,10 @@ const NewPost = () => {
 
     if (description !== "" && location !== "") {
       const req = {
+        username: user.user_name,
         description,
         location,
-        username: user.user_name
+        id: user.id
       };
 
       const token = localStorage.getItem("myJWT");
@@ -54,11 +55,11 @@ const NewPost = () => {
       const options = {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       };
 
       axios.post("http://localhost:3001/posts", req, options).then((result) => {
-        console.log(result.data);
+        // console.log(result.data);
         navigate("/");
       });
     }

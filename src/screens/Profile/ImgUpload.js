@@ -1,0 +1,99 @@
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Card, Container, Button, ListGroup, NavItem } from "react-bootstrap";
+import EditPost from "./UpdatePost";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+
+const ImgUpload = (props) => {
+  let [image, setImage] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const [preview, setPreview] = useState("");
+let navigate = useNavigate();
+
+  let params = useParams();
+
+  const token = localStorage.getItem("myJWT");
+  const options = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const onFileSelected = (e) => {
+    if (e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+      console.log("name:", e.target.files[0]);
+    }
+  };
+
+  const uploadFile = (e) => {
+    e.preventDefault();
+    try {
+      // construct the file name
+      let fileData = new FormData();
+      //Prepend
+      fileData.set("image", selectedFile, `${Date.now()}-${selectedFile.name}`);
+      //set request headers
+      const headers = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${props.token}`,
+        },
+      };
+
+      //post to the server
+
+      axios
+        .post(
+          `http://localhost:3001/users/images/${params.id}`,
+          fileData,
+          headers
+        )
+        .then((res) => {
+          console.log(res);
+          navigate('/profile')
+        });
+    } catch {}
+  };
+  //LOAD IMAGE PREVIEW WHEN UPLOADED
+  useEffect(() => {
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(selectedFile);
+    }
+  }, [selectedFile]);
+
+  useEffect(() => {
+    axios
+      .post(
+        `http://localhost:3001/users/getInfo/${params.id}`,
+        { jwt: token },
+        options
+      )
+      .then((res) => {
+        setImage(res.data);
+        console.log("DATA", res.data);
+      });
+  }, []);
+
+  return (
+    <div>
+      <div>Upload Photo for {image.first_name} </div>
+      <img src={image.profile_pic} />
+
+      <form onSubmit={uploadFile}>
+        <label>
+          Upload Image (max 5mg)
+          <input type="file" onChange={onFileSelected} />
+        </label>
+
+        {preview ? <img src={preview} alt="preview" width="500" /> : ""}
+
+        <button type="submit">save</button>
+      </form>
+    </div>
+  );
+};
+
+export default ImgUpload;
