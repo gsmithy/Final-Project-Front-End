@@ -11,8 +11,8 @@ import { useNavigate, useParams } from "react-router-dom";
 const EditPost = () => {
   const navigate = useNavigate();
   const [posts, setPost] = useState({
-    description: '',
-    location: ''
+    description: "",
+    location: "",
   });
   const [user, setUser] = useState(null);
   let params = useParams();
@@ -32,34 +32,33 @@ const EditPost = () => {
     e.preventDefault();
     // console.log('post', post)
 
-     if (posts.description !== "" && posts.location !== "") {
-
-    let req = {
-      description: posts.description,
-      location: posts.location
-      // user: user.user_name,
-      // id: user.id,
-    };
-    const token = localStorage.getItem("myJWT");
-    if (!token) {
-      // navigate("/login");
-      console.log("no token");
-    }
-    const options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    axios.put(`http://localhost:3001/posts/${params.id}`, req, options).then(
-      (res) => {
-        console.log('res', res.status);
-        //navigate("/profile");
-      },
-      (err) => {
-        // localStorage.removeItem("myJWT");
+    if (posts.description !== "" && posts.location !== "") {
+      let req = {
+        description: posts.description,
+        location: posts.location,
+        // user: user.user_name,
+        // id: user.id,
+      };
+      const token = localStorage.getItem("myJWT");
+      if (!token) {
+        // navigate("/login");
+        console.log("no token");
       }
-    );
-  };
+      const options = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      axios.put(`http://localhost:3001/posts/${params.id}`, req, options).then(
+        (res) => {
+          console.log("res", res.status);
+          //navigate("/profile");
+        },
+        (err) => {
+          // localStorage.removeItem("myJWT");
+        }
+      );
+    }
   };
 
   const deletePost = () => {
@@ -76,7 +75,7 @@ const EditPost = () => {
     axios.delete(`http://localhost:3001/posts/${params.id}`, options).then(
       (res) => {
         console.log(res.data, "delete success");
-        navigate('/profile')
+        navigate("/profile");
       },
       (err) => {
         console.log("ooops, something went wrong!");
@@ -84,25 +83,46 @@ const EditPost = () => {
       }
     );
   };
+
+  const handleChange = (event) => {
+    setPost((preValue) => {
+      return { ...preValue, [event.target.name]: event.target.value };
+    });
+  };
+
+  // const test = () => {
+  //   console.log(posts)
+  // }
+
   return (
     <Form onSubmit={updatePost}>
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "70rem" }}>
           <Card.Header className="text-center">Edit Your News..</Card.Header>
           <Card.Body>
-            <FloatingLabel label="What Happened?" controlId="description" className="mb-3">
+            <FloatingLabel
+              label="What Happened?"
+              controlId="description"
+              className="mb-3"
+            >
               <Form.Control
+                name="description"
                 value={posts.description}
-                onChange={(event) =>setPost({ description: event.target.value })}
+                onChange={handleChange}
                 as="textarea"
                 style={{ height: "100px" }}
               />
             </FloatingLabel>
 
-            <FloatingLabel label="Where did this happen?" controlId="location" className="mb-3">
+            <FloatingLabel
+              label="Where did this happen?"
+              controlId="location"
+              className="mb-3"
+            >
               <Form.Control
+                name="location"
                 value={posts.location}
-                onChange={(event) => setPost({ location: event.target.value })}
+                onChange={handleChange}
                 as="textarea"
                 style={{ height: "100px" }}
               />
@@ -114,6 +134,9 @@ const EditPost = () => {
               <Button onClick={deletePost} variant="secondary">
                 Delete
               </Button>
+              {/* <Button type="button" onClick={test} variant="secondary">
+                test
+              </Button> */}
             </Form.Group>
           </Card.Body>
         </Card>
