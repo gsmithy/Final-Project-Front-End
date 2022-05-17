@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
 
+
 export default class PersonList extends React.Component {
   state = {
     persons: [],

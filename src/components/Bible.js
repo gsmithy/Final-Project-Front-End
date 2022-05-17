@@ -1,30 +1,47 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-export default class BibleVerses extends React.Component {
-  state = {
-    verses: []
-  }
+const ApiCall = () => {
+  const [verse1, setVerse1] = useState([]);
+  const [verse2, setVerse2] = useState([]);
+  const [verse3, setVerse3] = useState([]);
 
-  componentDidMount() {
-    axios.get('https://bible-api.com/' + book + chapter + ':' + verse)
-      .then(res => {
-        const verses = res.data;
-        console.log(verses);
-        this.setState({ verses });
+  useEffect(() => {
+    axios
+      .get("https://bible-api.com/ephesians 3:19")
+      .then((res) => {
+        setVerse1(res.data);
       })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("https://bible-api.com/revelation 19:10")
+      .then((res) => {
+        setVerse2(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get("https://bible-api.com/matthew+28:18-19")
+      .then((res) => {
+        setVerse3(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  render() {
-    return (
-      <ul>
-        {
-          this.state.verses
-            .map(verses =>
-              <li key={verses.reference}>{verses.text}</li>
-            )
-        }
-      </ul>
-    )
-  }
-}
+  const states = [verse1, verse2, verse3];
+
+  return (
+    <>
+      {states.map((verse, i) => {
+        return <p key={i}>{verse.text}</p>;
+      })}
+    </>
+  );
+};
+
+export default ApiCall;

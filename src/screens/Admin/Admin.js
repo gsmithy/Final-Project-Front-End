@@ -21,7 +21,7 @@ const Admin = () => {
         axios.get('http://localhost:3001/admin', options)
         .then(users => {
             setUsers(users.data);
-            console.log(users);
+            // console.log(users.data);
         })
     }, []);
 
@@ -29,7 +29,7 @@ const Admin = () => {
         <div>
             <h1>All Users</h1>
             <Nav className=" d-flex justify-content-beginning">
-              <Nav.Link href="/AdminPosts">Posts</Nav.Link>
+              <Nav.Link href="/adminposts">Posts</Nav.Link>
             </Nav>
             <ul>
               {users.map(user => 
@@ -39,9 +39,9 @@ const Admin = () => {
                   <Card.Title>{user.first_name}</Card.Title>
                   <Card.Text>{user.last_name}</Card.Text>
                  
-            <Button className="btn" variant="danger">
-              Delete
-            </Button>
+          <a href={`/admin/editUser/${user.id}`} className="btn" variant="danger">
+              Edit
+            </a>
           </Card.Body>
         </Card>
         )}
