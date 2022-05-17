@@ -7,16 +7,11 @@ import Nav from "react-bootstrap/Nav";
 
 
 export default class Header extends React.Component {
-  // Logout() {
-  // const Navigate = useNavigate();
-    // localStorage.clear();
-    // Navigate('/login')
 
-// };
   render() {
     return (
       <div>
-        <Navbar bg="light" variant="light">
+        <Navbar bg="light" variant="light" sticky="top" >
           <Container>
             <Navbar.Brand href="/"><img src='/Vector.svg' alt='good news logo'/></Navbar.Brand>
             <Nav className=" d-flex justify-content-end">
@@ -25,7 +20,6 @@ export default class Header extends React.Component {
               <Nav.Link href="/newpost">New Post</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
               <Nav.Link href="/signup">Sign Up</Nav.Link>
-              <Nav.Link onClick={localStorage.clear()} href="/login">Logout</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
