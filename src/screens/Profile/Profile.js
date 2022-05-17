@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Card, Container, Button, ListGroup } from "react-bootstrap";
+import EditPost from "./UpdatePost";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-    let token = localStorage.getItem("myJWT");
+    const token = localStorage.getItem("myJWT");
 
     // console.log(token);
     const options = {
@@ -39,18 +41,17 @@ const Profile = () => {
     };
 
     axios
-      .post("http://localhost:3001/posts/getPost", { jwt: token }, options)
+      .post("http://localhost:3001/users/getInfo", { jwt: token }, options)
       .then((res) => {
         setPosts(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  // console.log("user", user);
-  // console.log("posts", posts);
 
-  if (user === null) {
+  if (user === null || posts === null) {
     return <div>loading user...</div>;
   } else {
     return (
@@ -58,7 +59,16 @@ const Profile = () => {
         <Container className="p-4 d-flex justify-content-center">
           <ListGroup variant="flush">
             <div>
-              <img className="pp" src="/mock.jpeg" alt="" />
+              {user.profile_pic ? (
+                <img className="pp" src={user.profile_pic} alt="" width="500" />
+              ) : (
+                ""
+              )}
+              <a
+                href={`/profile/image/${user.id}`}
+                className="btn"
+                variant="primary"
+              >edit pic</a>
             </div>
             <ListGroup.Item>{user.user_name}</ListGroup.Item>
             <ListGroup.Item>
@@ -72,18 +82,19 @@ const Profile = () => {
             <ListGroup.Item>{user.country}</ListGroup.Item>
           </ListGroup>
           <ul>
-            {posts.map((post) => (
+            {user.Posts.map((post) => (
               <Card key={post.user_name}>
                 <Card.Header as="h5">...</Card.Header>
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
                   <Card.Text>{post.description}</Card.Text>
-                  <Button className="btn" variant="primary">
+                  <a
+                    href={`/profile/updatePost/${post.id}`}
+                    className="btn"
+                    variant="primary"
+                  >
                     edit
-                  </Button>
-                  <Button className="btn" variant="danger">
-                    delete
-                  </Button>
+                  </a>
                 </Card.Body>
               </Card>
             ))}
@@ -95,8 +106,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-
-
-
-
