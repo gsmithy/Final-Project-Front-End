@@ -82,8 +82,8 @@ const Profile = () => {
             <ListGroup.Item>{user.country}</ListGroup.Item>
           </ListGroup>
           <ul>
-            {user.Posts.map((post) => (
-              <Card key={post.user_name}>
+            {user.Posts.map((post, i) => (
+              <Card key={i}>
                 <Card.Header as="h5">...</Card.Header>
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
