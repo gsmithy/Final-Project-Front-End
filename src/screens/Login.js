@@ -25,10 +25,14 @@ const Login = () => {
 
             axios.post('http://localhost:3001/users/login', req).then(result => {
                 const token = result.data.jwt;
-                localStorage.setItem('myJWT', token)
+                localStorage.setItem('myJWT', token);
+                localStorage.setItem('user', JSON.stringify(result.data.user));
                 console.log(result.data);
                 navigate("/")
-            })
+            }, error => {
+                console.log(error);
+                alert('Username or password is not correct.');
+            });
         }
     }
 

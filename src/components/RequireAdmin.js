@@ -1,6 +1,7 @@
 import { useLocation, Navigate } from "react-router-dom";
 
-const RequireAuth = ({ children }) => {
+
+const RequireAdmin = ({ children }) => {
     const location = useLocation();
     let user = null;
 
@@ -11,10 +12,13 @@ const RequireAuth = ({ children }) => {
 
     if(!user) {
         return <Navigate to="/login" state={{ from: location}} replace />
-    }   else {
+    }   else if(user.admin) {
         return children;
+    } else {
+        alert('You are not authorized');
+        return <Navigate to="/" state={{ from: location}} replace />
     }
 
 }
 
-export default RequireAuth;
+export default RequireAdmin;

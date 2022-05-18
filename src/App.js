@@ -13,9 +13,10 @@ import EditPost from "./screens/Profile/UpdatePost";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImgUpload from "./screens/Profile/ImgUpload";
-import { useEffect, useState } from "react";
 import UpdatePost from "./screens/Admin/updatePost";
 import UpdateUser from "./screens/Admin/updateUser";
+import RequireAuth from "./components/RequireAuth";
+import RequireAdmin from "./components/RequireAdmin";
 
 const App = () => {
   return (
@@ -25,23 +26,30 @@ const App = () => {
           <Header />
         </div>
         <Routes>
+
           {/* //Public Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/newpost" element={<NewPost />} />
           <Route exact path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/updatePost/:id" element={<EditPost />} />
-          <Route path="/profile/image/:id" element={<ImgUpload />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* //Protected Routes */}
-          <Route path="/admin" element={<Admin />} />
+
+          {/* Authenticated routes*/}
+          {/* <Route  element={ <RequireAuth/> } > */}
+          <Route path="/newpost" element={ <RequireAuth> <NewPost /> </RequireAuth> } />
+          <Route path="/profile" element={ <RequireAuth> <Profile /> </RequireAuth> } />
+          <Route path="/profile/updatePost/:id" element={ <RequireAuth> <EditPost /> </RequireAuth> } />
+          <Route path="/profile/image/:id" element={ <RequireAuth> <ImgUpload /> </RequireAuth> } />
+        {/* </Route> */}
+
+          {/* //Authorized Routes */}
+          <Route path="/admin" element={ <RequireAdmin> <Admin /> </RequireAdmin> } />
           <Route path="/adminposts" element={<AdminPosts />} />
           <Route path="/admin/edituser/:id" element={<UpdateUser />} />
           <Route path="/admin/editpost/:id" element={<UpdatePost />} />
 
           {/* //Catch All */}
           <Route path="/*" element={<Missing />} />
+          
         </Routes>
       </div>
     </Router>
