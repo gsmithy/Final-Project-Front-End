@@ -33,13 +33,27 @@ const ApiCall = () => {
       });
   }, []);
 
-  const states = [verse1, verse2, verse3];
+  const objList = [verse1, verse2, verse3];
+
+  // const cycle = document.getElementById('cycle');
+  // let i = 0;
+  // const cycleText = (props) => {
+  //   cycle.innerHTML = objList[i];
+  //   i = ++i % objList.length;
+
+  //   return (
+  //     <div id='cycle'>{props.text}</div>
+  //   )
+  // };
+  // cycleText();
+  // setInterval(cycleText, 100000);
 
   return (
     <>
-      {states.map((verse, i) => {
-        return <p key={i}>{verse.text}</p>;
-      })}
+      {objList.map((data, i) => {
+        return <span key={i}>{data.text}</span>; 
+        {/* <div>{cycle}</div> */}
+      })} 
     </>
   );
 };
