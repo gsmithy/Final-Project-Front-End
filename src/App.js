@@ -14,7 +14,7 @@ import FooterPage from "./components/Footer";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImgUpload from "./screens/Profile/ImgUpload";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import UpdatePost from "./screens/Admin/updatePost";
 import UpdateUser from "./screens/Admin/updateUser";
 

@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Carousel from "react-bootstrap/Carousel";
-
+import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+// import Carousel from "react-bootstrap/Carousel";
 
 export default class PersonList extends React.Component {
   state = {
@@ -9,19 +10,31 @@ export default class PersonList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/home`).then((res) => {
+    axios.get(`http://localhost:3001/homelist`).then((res) => {
       const persons = res.data;
       this.setState({ persons });
       console.log(res.persons);
     });
   }
 
-  
-
   render() {
     return (
       <div>
-        <Carousel>
+        {this.state.persons.map((person) => (
+          <Container className="p-4 justify-content-center" key={person.id}>
+            <Card>
+              <Card.Header className="text-center">
+                {person.user_name}
+              </Card.Header>
+              <Card.Body>
+                <Card.Title>{person.location}</Card.Title>
+                <Card.Text>{person.description}</Card.Text>
+              </Card.Body>
+            </Card>
+          </Container>
+        ))}
+
+        {/* <Carousel>
         {this.state.persons.map((person) => (
           <Carousel.Item key={person.id}>
             <img
@@ -36,9 +49,8 @@ export default class PersonList extends React.Component {
             </Carousel.Caption>
           </Carousel.Item>
         ))}
-        </Carousel>
+        </Carousel> */}
       </div>
     );
   }
 }
-

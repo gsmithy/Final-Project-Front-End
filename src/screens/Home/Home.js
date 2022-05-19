@@ -1,6 +1,7 @@
 import React from "react";
 import ApiCall from "./Bible";
 import PersonList from "./HomeDB";
+import TenPosts from "./TenPosts";
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
         <PersonList />
         <ApiCall />
+        <TenPosts />
     </div>
   );
 };
