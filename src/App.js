@@ -17,6 +17,7 @@ import UpdatePost from "./screens/Admin/updatePost";
 import UpdateUser from "./screens/Admin/updateUser";
 import RequireAuth from "./components/RequireAuth";
 import RequireAdmin from "./components/RequireAdmin";
+import Unauthorized from "./screens/Unauthorized";
 
 const App = () => {
   return (
@@ -31,6 +32,8 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
+
 
 
           {/* Authenticated routes*/}
@@ -39,11 +42,13 @@ const App = () => {
           <Route path="/profile/updatePost/:id" element={ <RequireAuth> <EditPost /> </RequireAuth> } />
           <Route path="/profile/image/:id" element={ <RequireAuth> <ImgUpload /> </RequireAuth> } />
 
+
           {/* Authorized Routes */}
           <Route path="/admin" element={ <RequireAdmin> <Admin /> </RequireAdmin> } />
           <Route path="/adminposts" element={ <RequireAdmin> <AdminPosts /> </RequireAdmin>} />
           <Route path="/admin/edituser/:id" element={ <RequireAdmin> <UpdateUser /> </RequireAdmin> } />
           <Route path="/admin/editpost/:id" element={ <RequireAdmin> <UpdatePost /> </RequireAdmin> } />
+
 
           {/* //Catch All */}
           <Route path="/*" element={<Missing />} />

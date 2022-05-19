@@ -15,8 +15,7 @@ const RequireAdmin = ({ children }) => {
     }   else if(user.admin) {
         return children;
     } else {
-        alert('You are not authorized');
-        return <Navigate to="/" state={{ from: location}} replace />
+        return <Navigate to="/unauthorized" state={{ from: location}} replace />
     }
 
 }
