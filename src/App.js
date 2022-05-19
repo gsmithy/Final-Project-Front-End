@@ -34,18 +34,16 @@ const App = () => {
 
 
           {/* Authenticated routes*/}
-          {/* <Route  element={ <RequireAuth/> } > */}
           <Route path="/newpost" element={ <RequireAuth> <NewPost /> </RequireAuth> } />
           <Route path="/profile" element={ <RequireAuth> <Profile /> </RequireAuth> } />
           <Route path="/profile/updatePost/:id" element={ <RequireAuth> <EditPost /> </RequireAuth> } />
           <Route path="/profile/image/:id" element={ <RequireAuth> <ImgUpload /> </RequireAuth> } />
-        {/* </Route> */}
 
-          {/* //Authorized Routes */}
+          {/* Authorized Routes */}
           <Route path="/admin" element={ <RequireAdmin> <Admin /> </RequireAdmin> } />
-          <Route path="/adminposts" element={<AdminPosts />} />
-          <Route path="/admin/edituser/:id" element={<UpdateUser />} />
-          <Route path="/admin/editpost/:id" element={<UpdatePost />} />
+          <Route path="/adminposts" element={ <RequireAdmin> <AdminPosts /> </RequireAdmin>} />
+          <Route path="/admin/edituser/:id" element={ <RequireAdmin> <UpdateUser /> </RequireAdmin> } />
+          <Route path="/admin/editpost/:id" element={ <RequireAdmin> <UpdatePost /> </RequireAdmin> } />
 
           {/* //Catch All */}
           <Route path="/*" element={<Missing />} />
