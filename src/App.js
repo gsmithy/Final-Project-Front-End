@@ -1,6 +1,6 @@
 // import logo from "./logo.svg";
 import "./App.css";
-import Home from "./screens/Home";
+import Home from "./screens/Home/Home";
 import Login from "./screens/Login";
 import NewPost from "./screens/NewPost";
 import Profile from "./screens/Profile/Profile";
