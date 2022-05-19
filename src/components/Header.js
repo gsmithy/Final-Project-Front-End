@@ -10,7 +10,7 @@ const Header = () => {
   };
     return (
       <div>
-        <Navbar bg="light" variant="light" sticky="top" >
+        <Navbar bg="light" variant="light" fixed="top" >
           <Container>
             <Navbar.Brand href="/">
               <img src="/Vector.svg" alt="good news logo" />

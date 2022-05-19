@@ -5,11 +5,11 @@ import Nav from "react-bootstrap/Nav";
 
 const FooterPage = () => {
   return (
-    <div>
-      <Container>
-        <Navbar className="justify-content-center" variant="light" bg="light">
+    <div className="flex">
+      <Container className="footer">
+        <Navbar  className="justify-content-center" variant="light" bg="light">
             <Navbar.Brand href="/admin">
-              <img src="/BlackWorld.svg" alt="good news logo" />
+              <img className='footerLogo'src="/BlackWorld.svg" alt="good news logo" />
             </Navbar.Brand>
           <Nav>
             <Nav.Link href="/">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Carousel } from "react-bootstrap";
 
 const ApiCall = () => {
   const [verse1, setVerse1] = useState([]);
@@ -50,10 +51,13 @@ const ApiCall = () => {
 
   return (
     <>
-      {objList.map((data, i) => {
-        return <span key={i}>{data.text}</span>; 
-        {/* <div>{cycle}</div> */}
-      })} 
+      <Carousel fade indicators={false} interval={10000}>
+        {objList.map((data, i) => (
+          <Carousel.Item key={i}>
+            <p className="d-block w-100">"{data.text}"</p>
+          </Carousel.Item>
+        ))}
+      </Carousel>
     </>
   );
 };

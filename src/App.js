@@ -45,7 +45,7 @@ const App = () => {
           {/* //Catch All */}
           <Route path="/*" element={<Missing />} />
           </Routes>
-        <div className="mt-auto">
+        <div>
         <FooterPage />
         </div>
       </div>

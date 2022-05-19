@@ -2,16 +2,22 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {Card, Button} from "react-bootstrap";
 import { Nav } from "react-bootstrap";
-
-
+import { useNavigate } from "react-router-dom";
 
 
 const Admin = () => {
+  let navigate = useNavigate();
+
    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         let token = localStorage.getItem("myJWT");
         console.log(token);
+        //added for unlogged in admins
+        if (!token) {
+          console.log('Sorry, You need to log in!')
+          navigate('/login')
+        }
         const options = {
             headers: {
               'Authorization': `Bearer ${token}`
@@ -19,10 +25,10 @@ const Admin = () => {
           }
 
         axios.get('http://localhost:3001/admin', options)
-        .then(users => {
-            setUsers(users.data);
-            // console.log(users.data);
-        })
+        .then(user => {
+            setUsers(user.data);
+            console.log(user.data);
+        });
     }, []);
 
     return (

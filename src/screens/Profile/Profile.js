@@ -60,7 +60,7 @@ const Profile = () => {
           <ListGroup variant="flush">
             <div>
               {user.profile_pic ? (
-                <img className="pp" src={user.profile_pic} alt="" width="500" />
+                <img thumbnail="true" className="pp" src={user.profile_pic} alt="" width="500" />
               ) : (
                 ""
               )}
