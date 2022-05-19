@@ -23,7 +23,8 @@ export default class PersonList extends React.Component {
             <Carousel.Item key={person.id}>
               <img
                 className="d-block w-100 carImage"
-                src="/tile4.svg"
+                // src="/tile4.svg"
+                src="test.png"
                 alt="First slide"/>
               <Carousel.Caption>
                 <h1>{person.description}</h1>

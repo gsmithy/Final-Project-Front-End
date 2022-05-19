@@ -6,8 +6,12 @@ import Nav from "react-bootstrap/Nav";
 const FooterPage = () => {
   return (
     <div className="flex">
+      
       <Container className="footer">
-        <Navbar  className="justify-content-center" variant="light" bg="light">
+      <Navbar  className="justify-content-center" variant="light" bg="light">
+    {/* <div>
+        <Navbar variant="light" bg="light">
+      <Container className="justify-content-center"> */}
             <Navbar.Brand href="/admin">
               <img className='footerLogo'src="/BlackWorld.svg" alt="good news logo" />
             </Navbar.Brand>
@@ -16,8 +20,9 @@ const FooterPage = () => {
               &copy; {new Date().getFullYear()} Copyright: GoodNews.com
             </Nav.Link>
           </Nav>
-        </Navbar>
+          </Navbar>
       </Container>
+       
     </div>
   );
 };

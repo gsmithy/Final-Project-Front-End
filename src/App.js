@@ -14,40 +14,51 @@ import FooterPage from "./components/Footer";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImgUpload from "./screens/Profile/ImgUpload";
-import { useEffect, useState } from "react";
 import UpdatePost from "./screens/Admin/updatePost";
 import UpdateUser from "./screens/Admin/updateUser";
+import RequireAuth from "./components/RequireAuth";
+import RequireAdmin from "./components/RequireAdmin";
+import Unauthorized from "./screens/Unauthorized";
 
 const App = () => {
   return (
     <Router>
       <div className="d-flex flex-column min-vh-100">
+    
           <div className="App">
             <Header />
           </div>
         
           <Routes>
            {/* //Public Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/newpost" element={<NewPost />} />
           <Route exact path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/updatePost/:id" element={<EditPost />} />
-          <Route path="/profile/image/:id" element={<ImgUpload />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
 
-          {/* //Protected Routes */}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/adminposts" element={<AdminPosts />} />
-          <Route path="/admin/edituser/:id" element={<UpdateUser />} />
-          <Route path="/admin/editpost/:id" element={<UpdatePost />} />
+
+          {/* Authenticated routes*/}
+          <Route path="/newpost" element={ <RequireAuth> <NewPost /> </RequireAuth> } />
+          <Route path="/profile" element={ <RequireAuth> <Profile /> </RequireAuth> } />
+          <Route path="/profile/updatePost/:id" element={ <RequireAuth> <EditPost /> </RequireAuth> } />
+          <Route path="/profile/image/:id" element={ <RequireAuth> <ImgUpload /> </RequireAuth> } />
+
+
+          {/* Authorized Routes */}
+          <Route path="/admin" element={ <RequireAdmin> <Admin /> </RequireAdmin> } />
+          <Route path="/adminposts" element={ <RequireAdmin> <AdminPosts /> </RequireAdmin>} />
+          <Route path="/admin/edituser/:id" element={ <RequireAdmin> <UpdateUser /> </RequireAdmin> } />
+          <Route path="/admin/editpost/:id" element={ <RequireAdmin> <UpdatePost /> </RequireAdmin> } />
+
 
           {/* //Catch All */}
           <Route path="/*" element={<Missing />} />
+
           </Routes>
         <div>
         <FooterPage />
         </div>
+
       </div>
     </Router>
   );
