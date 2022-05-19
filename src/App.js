@@ -35,7 +35,6 @@ const App = () => {
           <Route path="/unauthorized" element={<Unauthorized />} />
 
 
-
           {/* Authenticated routes*/}
           <Route path="/newpost" element={ <RequireAuth> <NewPost /> </RequireAuth> } />
           <Route path="/profile" element={ <RequireAuth> <Profile /> </RequireAuth> } />
