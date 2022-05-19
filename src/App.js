@@ -1,6 +1,6 @@
 // import logo from "./logo.svg";
 import "./App.css";
-import Home from "./screens/Home";
+import Home from "./screens/Home/Home";
 import Login from "./screens/Login";
 import NewPost from "./screens/NewPost";
 import Profile from "./screens/Profile/Profile";
@@ -10,6 +10,7 @@ import Admin from "./screens/Admin/Admin";
 import AdminPosts from "./screens/Admin/AdminPosts";
 import Missing from "./screens/Missing";
 import EditPost from "./screens/Profile/UpdatePost";
+import FooterPage from "./components/Footer";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ImgUpload from "./screens/Profile/ImgUpload";
@@ -20,12 +21,13 @@ import UpdateUser from "./screens/Admin/updateUser";
 const App = () => {
   return (
     <Router>
-      <div>
-        <div className="App">
-          <Header />
-        </div>
-        <Routes>
-          {/* //Public Routes */}
+      <div className="d-flex flex-column min-vh-100">
+          <div className="App">
+            <Header />
+          </div>
+        
+          <Routes>
+           {/* //Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/newpost" element={<NewPost />} />
           <Route exact path="/" element={<Home />} />
@@ -42,7 +44,10 @@ const App = () => {
 
           {/* //Catch All */}
           <Route path="/*" element={<Missing />} />
-        </Routes>
+          </Routes>
+        <div className="mt-auto">
+        <FooterPage />
+        </div>
       </div>
     </Router>
   );

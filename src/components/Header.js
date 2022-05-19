@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 const Header = () => {
   const logout = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   };
     return (
       <div>
-        <Navbar bg="light" variant="light">
+        <Navbar bg="light" variant="light" sticky="top" >
           <Container>
             <Navbar.Brand href="/">
               <img src="/Vector.svg" alt="good news logo" />

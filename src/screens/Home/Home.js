@@ -1,6 +1,6 @@
 import React from "react";
-import ApiCall from "../components/Bible";
-import PersonList from "../components/HomeDB";
+import ApiCall from "./Bible";
+import PersonList from "./HomeDB";
 
 
 const Home = () => {
