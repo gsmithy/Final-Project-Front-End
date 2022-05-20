@@ -5,9 +5,6 @@
 .App {
   text-align: center;
 }
-.homeCar {
-
-}
 
 .pp {
   border-radius: 50%;
@@ -20,25 +17,7 @@
   border: 1px solid lightgray;
   padding: 5px;
 }
-.flex {
-  
-  display: flex;
-  flex-direction: column;
-  border: 0.5px solid lightgray;
-  border-radius: 8px;
  
-  }
- .footer {
-  min-width: 100%;
-  bottom: 0;
-  align-self: flex-end;
-
- } 
-.footerLogo {
-  width: 10vmin;
-  height: 10vmin;
-
-}
 .btn {
   margin-right: 1vmin;
 }
