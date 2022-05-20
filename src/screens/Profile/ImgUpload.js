@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Card, Container, Button, ListGroup, NavItem } from "react-bootstrap";
+import { Card, Container, Form, Button, ListGroup, NavItem } from "react-bootstrap";
 import EditPost from "./UpdatePost";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
@@ -78,7 +78,27 @@ let navigate = useNavigate();
   }, []);
 
   return (
-    <div>
+    <>
+    <Form onSubmit={uploadFile}>
+    <div>Upload Photo for {image.first_name} </div>
+      
+      <Container className="p-4 d-flex justify-content-center">
+        <Card style={{ width: "70rem" }}>
+          <Card.Header className="text-center">Upload Something..</Card.Header>
+          <Card.Body></Card.Body>
+
+    <Form.Group controlId="formFileMultiple" className="mb-3">
+              <Form.Label>Upload your picture!</Form.Label>
+              <Form.Control type="file" onChange={onFileSelected} multiple />
+            </Form.Group>
+            <img src={image.profile_pic} />
+            {preview ? <img src={preview} alt="preview" width="250" /> : ""}
+            <Button variant="secondary"type="submit">Submit</Button>
+            </Card>
+      </Container>
+      </Form>
+           </>
+    /* <div>
       <div>Upload Photo for {image.first_name} </div>
       <img src={image.profile_pic} />
 
@@ -92,7 +112,7 @@ let navigate = useNavigate();
 
         <button type="submit">save</button>
       </form>
-    </div>
+    </div> */
   );
 };
 

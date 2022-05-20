@@ -41,7 +41,7 @@ const Login = () => {
       <Container className="p-4 d-flex justify-content-center">
         <Card style={{ width: "40rem" }}>      
         <Card.Header className="text-center">    
-          <h2>Login</h2>
+          <div>Login</div>
           </Card.Header>
           <Card.Body>
             <Form onSubmit={signIn}>

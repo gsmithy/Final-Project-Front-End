@@ -5,19 +5,29 @@
 .App {
   text-align: center;
 }
+.container-footer {
+  /* border: 1px solid lightgrey; */
 
+}
+.footer {
+
+}
 .pp {
   border-radius: 50%;
   height: 30vmin;
   width: 30vmin;
-  display: flex;
 }
 .carImage {
   border-radius: 8px;
   border: 1px solid lightgray;
   padding: 5px;
 }
- 
+
+.box {
+  inline-size: 150vmin;
+  margin: auto;
+}
+
 .btn {
   margin-right: 1vmin;
 }

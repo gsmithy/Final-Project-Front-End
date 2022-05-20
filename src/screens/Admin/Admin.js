@@ -45,9 +45,9 @@ const Admin = () => {
                   <Card.Title>{user.first_name}</Card.Title>
                   <Card.Text>{user.last_name}</Card.Text>
                  
-          <a href={`/admin/editUser/${user.id}`} className="btn" variant="danger">
+          <Button href={`/admin/editUser/${user.id}`} className="btn" variant="secondary">
               Edit
-            </a>
+            </Button>
           </Card.Body>
         </Card>
         )}

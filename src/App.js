@@ -55,10 +55,11 @@ const App = () => {
           <Route path="/*" element={<Missing />} />
 
           </Routes>
-        <div>
-        <FooterPage />
-        </div>
+        
 
+      </div>
+      <div>
+        <FooterPage />
       </div>
     </Router>
   );

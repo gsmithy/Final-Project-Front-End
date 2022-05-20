@@ -36,25 +36,18 @@ const ApiCall = () => {
 
   const objList = [verse1, verse2, verse3];
 
-  // const cycle = document.getElementById('cycle');
-  // let i = 0;
-  // const cycleText = (props) => {
-  //   cycle.innerHTML = objList[i];
-  //   i = ++i % objList.length;
-
-  //   return (
-  //     <div id='cycle'>{props.text}</div>
-  //   )
-  // };
-  // cycleText();
-  // setInterval(cycleText, 100000);
-
   return (
     <>
-      <Carousel fade indicators={false} interval={10000}>
+      <Carousel 
+        className="p-4 d-flex justify-content-center box"
+        indicators={false}
+        interval={10000}
+      >
         {objList.map((data, i) => (
           <Carousel.Item key={i}>
-            <p className="d-block w-100">"{data.text}"</p>
+            <p className="d-block w-100 justify-content-center">
+              "{data.text}"
+            </p>
           </Carousel.Item>
         ))}
       </Carousel>
