@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Carousel } from "react-bootstrap";
 
 const ApiCall = () => {
   const [verse1, setVerse1] = useState([]);
@@ -33,13 +34,23 @@ const ApiCall = () => {
       });
   }, []);
 
-  const states = [verse1, verse2, verse3];
+  const objList = [verse1, verse2, verse3];
 
   return (
     <>
-      {states.map((verse, i) => {
-        return <p key={i}>{verse.text}</p>;
-      })}
+      <Carousel 
+        className="p-4 d-flex justify-content-center box"
+        indicators={false}
+        interval={10000}
+      >
+        {objList.map((data, i) => (
+          <Carousel.Item key={i}>
+            <p className="d-block w-100 justify-content-center">
+              "{data.text}"
+            </p>
+          </Carousel.Item>
+        ))}
+      </Carousel>
     </>
   );
 };

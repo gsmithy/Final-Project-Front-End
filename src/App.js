@@ -55,11 +55,11 @@ const App = () => {
           <Route path="/*" element={<Missing />} />
 
           </Routes>
+        
 
-        <div className="mt-auto">
+      </div>
+      <div>
         <FooterPage />
-        </div>
-
       </div>
     </Router>
   );

@@ -5,19 +5,23 @@ import Nav from "react-bootstrap/Nav";
 
 const FooterPage = () => {
   return (
-    <div>
-        <Navbar variant="light" bg="light">
-      <Container className="justify-content-center">
-            <Navbar.Brand href="/admin">
-              <img src="/BlackWorld.svg" alt="good news logo" />
-            </Navbar.Brand>
+    <div >
+      <Navbar className="container-footer py-0" variant="light" bg="light">
+        <Container className="justify-content-center footer">
+          <Navbar.Brand href="/admin">
+            <img
+              className="footerLogo"
+              src="/BlackWorld.svg"
+              alt="good news logo"
+            />
+          </Navbar.Brand>
           <Nav>
             <Nav.Link href="/">
               &copy; {new Date().getFullYear()} Copyright: GoodNews.com
             </Nav.Link>
           </Nav>
-      </Container>
-        </Navbar>
+        </Container>
+      </Navbar>
     </div>
   );
 };

@@ -66,8 +66,7 @@ const UpdatePost = () => {
             <Card.Text>Location: {posts.location}</Card.Text>
             <Button onClick={deletePost} className="btn" variant="danger">
               Delete
-            </Button>{" "}
-            || <a href="/adminposts">Back</a>
+            </Button>{" "}<Button variant="secondary" href="/adminposts">Back</Button>
           </Card.Body>
         </Card>
       </ul>

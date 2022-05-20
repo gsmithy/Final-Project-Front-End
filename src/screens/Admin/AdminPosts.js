@@ -36,13 +36,13 @@ const AdminPosts = () => {
               <Card.Title>Good News: {post.description}</Card.Title>
               <Card.Text>Location: {post.location}</Card.Text>
 
-              <a
+              <Button
                 href={`admin/editPost/${post.id}`}
                 className="btn"
-                variant="danger"
+                variant="secondary"
               >
                 Edit
-              </a>
+              </Button>
             </Card.Body>
           </Card>
         ))}

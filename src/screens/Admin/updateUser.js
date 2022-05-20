@@ -64,8 +64,7 @@ const UpdateUser = () => {
             <Card.Text>{user.last_name}</Card.Text>
             <Button onClick={deleteUser} className="btn" variant="danger">
               Delete
-            </Button>{" "}
-            || <a href="/admin">Back</a>
+            </Button>{" "}<Button variant="secondary" href="/admin">Back</Button>
           </Card.Body>
         </Card>
       </ul>

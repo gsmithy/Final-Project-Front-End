@@ -60,16 +60,17 @@ const Profile = () => {
           <ListGroup variant="flush">
             <div>
               {user.profile_pic ? (
-                <img className="pp" src={user.profile_pic} alt="" width="500" />
+                <img thumbnail="true" className="pp" src={user.profile_pic} alt="" width="500" />
               ) : (
                 ""
               )}
-              <a
-                href={`/profile/image/${user.id}`}
-                className="btn"
-                variant="primary"
-              >edit pic</a>
+              
             </div>
+            <Button
+                href={`/profile/image/${user.id}`}
+                className="btn-sm"
+                variant="Secondary"
+              >edit</Button >
             <ListGroup.Item>{user.user_name}</ListGroup.Item>
             <ListGroup.Item>
               {user.first_name} {user.last_name}
@@ -88,13 +89,13 @@ const Profile = () => {
                 <Card.Body>
                   <Card.Title>{post.location}</Card.Title>
                   <Card.Text>{post.description}</Card.Text>
-                  <a
+                  <Button
                     href={`/profile/updatePost/${post.id}`}
                     className="btn"
-                    variant="primary"
+                    variant="secondary"
                   >
                     edit
-                  </a>
+                  </Button>
                 </Card.Body>
               </Card>
             ))}
