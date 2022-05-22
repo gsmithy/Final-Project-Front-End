@@ -16,7 +16,7 @@ const AdminPosts = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    axios.get("http://localhost:3001/home").then((post) => {
+    axios.get("http://localhost:3001/homelist").then((post) => {
       console.log("post", post);
       setPosts(post.data);
     });

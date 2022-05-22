@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Card, Container, Form, Button, ListGroup, NavItem } from "react-bootstrap";
-import EditPost from "./UpdatePost";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 const ImgUpload = (props) => {
@@ -98,21 +97,6 @@ let navigate = useNavigate();
       </Container>
       </Form>
            </>
-    /* <div>
-      <div>Upload Photo for {image.first_name} </div>
-      <img src={image.profile_pic} />
-
-      <form onSubmit={uploadFile}>
-        <label>
-          Upload Image (max 5mg)
-          <input type="file" onChange={onFileSelected} />
-        </label>
-
-        {preview ? <img src={preview} alt="preview" width="500" /> : ""}
-
-        <button type="submit">save</button>
-      </form>
-    </div> */
   );
 };
 
