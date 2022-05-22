@@ -18,7 +18,7 @@ export default class PersonList extends React.Component {
   render() {
     return (
 
-<Carousel className="homeCar" variant="">
+<Carousel className="homeCar" slide='true' variant="">
           {this.state.persons.map((person) => (
             <Carousel.Item key={person.id}>
               <img

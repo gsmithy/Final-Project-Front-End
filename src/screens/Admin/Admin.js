@@ -37,7 +37,7 @@ const Admin = () => {
             <Nav className=" d-flex justify-content-beginning">
               <Nav.Link href="/adminposts">Posts</Nav.Link>
             </Nav>
-            <ul>
+            <ul className="admin-box">
               {users.map(user => 
                 <Card key={user.id}>
                   <Card.Header as="h5">User</Card.Header>

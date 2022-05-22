@@ -5,17 +5,27 @@
 .App {
   text-align: center;
 }
-.container-footer {
-  /* border: 1px solid lightgrey; */
+.admin-box {
+  max-width: 95%;
 
 }
-.footer {
-
+.back-ground {
+  background-image: url('../public/trial.svg');
+  max-width: 100%;
+  max-height: 100%;
+  background-position: 80%;
+  background-repeat: no-repeat;
+}
+.signup {
+  height: 60vmin;
+  width: 60vmin;
+  margin-bottom: 50%;
 }
 .pp {
   border-radius: 50%;
   height: 30vmin;
   width: 30vmin;
+  margin-left: 10%;
 }
 .carImage {
   border-radius: 8px;
