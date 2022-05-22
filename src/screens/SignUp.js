@@ -154,8 +154,8 @@ const SignUp = () => {
                   </div>
                   <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                     <img
-                      src="/worldSignup.svg"
-                      className="img-fluid"
+                      src="/signupw.svg"
+                      className="img-fluid signup"
                       alt="Sample"
                     />
                   </div>

@@ -20,12 +20,14 @@ import RequireAuth from "./components/RequireAuth";
 import RequireAdmin from "./components/RequireAdmin";
 import Unauthorized from "./screens/Unauthorized";
 
+
 const App = () => {
+  // const backgroundPicture = new URL('/trial.svg', import.meta.url)
   return (
     <Router>
-      <div className="d-flex flex-column min-vh-100">
-    
+      <div className="d-flex flex-column min-vh-100 back-ground">
           <div className="App">
+          
             <Header />
           </div>
         
@@ -61,6 +63,7 @@ const App = () => {
       <div>
         <FooterPage />
       </div>
+      
     </Router>
   );
 };
